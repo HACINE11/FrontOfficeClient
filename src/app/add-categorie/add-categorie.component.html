@@ -1,0 +1,36 @@
+<div class="alert alert-success" role="alert" *ngIf="alert == 1">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="10" height="10">
+      <path
+        d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+    </svg>
+    {{ message }}
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="alert == 2">
+    {{ message }}
+  </div>
+<div class="container">
+    <h1>Ajouter une Nouvelle Catégorie</h1>
+    <form [formGroup]="categorieForm">
+        <div class="form-group">
+            <label for="categorieName">Nom de la Catégorie</label>
+            <input type="text" id="categorieName" required formControlName="nomCategorie">
+            <div *ngIf="categorieForm.get('nomCategorie')!.invalid && (categorieForm.get('nomCategorie')!.touched || categorieForm.get('nomCategorie')!.dirty)">
+                <small class="alerte" *ngIf="categorieForm.get('nomCategorie')!.errors!['required']">Le nom de la catégorie est obligatoire!</small>
+                <small class="alerte" *ngIf="categorieForm.get('nomCategorie')!.errors!['minlength']">Le nom de la catégorie doit contenir au moins 3 caractères!</small>
+                <small class="alerte" *ngIf="categorieForm.get('nomCategorie')!.errors!['pattern']">Le nom de la catégorie doit être en alphabet seulement</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="categorieDescription">Description de la Catégorie</label>
+            <textarea id="categorieDescription" rows="4" required formControlName="descriptionCategorie"></textarea>
+            <div *ngIf="categorieForm.get('descriptionCategorie')!.invalid && (categorieForm.get('descriptionCategorie')!.touched || categorieForm.get('descriptionCategorie')!.dirty)">
+                <small class="alerte" *ngIf="categorieForm.get('descriptionCategorie')!.errors!['required']">La description de la catégorie est obligatoire!</small>
+                <small class="alerte" *ngIf="categorieForm.get('descriptionCategorie')!.errors!['minlength']">La description de la catégorie doit contenir au moins 3 caractères!</small>
+                
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" [disabled]="categorieForm.invalid" (click)="addCategorie()">Ajouter la Catégorie</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,72 @@
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('../../assets/images/mliha.jpg');
+    background-size: cover;
+  }
+  .products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Adjust the gap between cards as needed */
+    justify-content: flex-start; /* Align items to the start of the container */
+  }
+  
+  .product-card {
+    flex: 0 0 300px; /* Ensures each card has a fixed width */
+    height: 400px; /* Set a fixed height */
+    box-sizing: border-box;
+  }
+  
+  .example-card {
+    width: 100%; /* Ensures the card takes the full width of the flex item */
+    height: 100%; /* Ensures the card takes the full height of the flex item */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-card img {
+    flex-shrink: 0;
+    object-fit: cover; /* Ensure images cover the designated area without stretching */
+    height: 150px; /* Fixed height for the image */
+  }
+  
+  .example-card mat-card-content {
+    flex-grow: 1;
+    overflow: hidden; /* Prevent content overflow */
+  }
+  
+  .example-card mat-card-actions {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .stock-indicator {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.stock-indicator span {
+    margin-right: 8px;
+}
+
+.stock-level {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.stock-level.low {
+    background-color: red;
+}
+
+.stock-level.medium {
+    background-color: orange;
+}
+
+.stock-level.high {
+    background-color: green;
+}
+  
