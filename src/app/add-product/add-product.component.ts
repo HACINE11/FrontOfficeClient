@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -18,16 +18,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent {
-  categories!: CategorieProduit[];
+  categoriesProduit!: CategorieProduit[];
   id!: number;
+  @Output() productAdded = new EventEmitter<FormData>();
   nomProduit!: string;
   productForm: FormGroup = new FormGroup({
-    nom: new FormControl('', [
+    nomProduit: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.pattern('^[a-zA-Z ]+$'),
     ]),
-    description: new FormControl('', [
+    descriptionProduit: new FormControl('', [
       Validators.required,
       Validators.minLength(5),
       Validators.pattern('^[a-zA-Z ]+$'),
@@ -55,7 +56,9 @@ export class AddProductComponent {
     private router: Router
   ) {
     this.cs.getCategories().subscribe({
-      next: (data) => (this.categories = data),
+      next: (data) => {
+        this.categoriesProduit = data;
+      },
       error: (e) => alert(e.message),
     });
     this.id = this.ac.snapshot.params['id'];
@@ -124,13 +127,10 @@ export class AddProductComponent {
     product.forEach((value, key) => {
       console.log(key, value);
     });
-    this.ps.addProduct(product).subscribe({
-      next: (d) => {
-        console.log(d);
-        this.productForm.reset();
-      },
-      error: (e) => alert(e.message),
-    });
+    if (this.id == undefined) {
+      this.productForm.reset();
+    }
+    this.productAdded.emit(product);
   }
   getMessage() {
     return this.nomProduit != undefined

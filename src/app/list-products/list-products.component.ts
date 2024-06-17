@@ -19,19 +19,28 @@ export class ListProductsComponent {
     private productService: ProduitService,
     private ar: ActivatedRoute
   ) {
-    this.id = this.ar.snapshot.params['id'];
-    this.productService.getAllProducts().subscribe({
-      next: (d) => (this.products = d),
-      error: (e) => alert(e.message),
-    });
+    const url = this.ar.snapshot.params['id'];
+    const index = url.indexOf('-');
+    this.id = url.slice(0, index);
     if (this.id) {
-      this.productService.getProductsByCategorieId(this.id).subscribe({
-        next: (d) => (this.products = d),
-        error: (e) => alert(e.message),
-      });
+      this.refraish();
     }
   }
   showProduct() {
     this.toggle = !this.toggle;
+  }
+  addProduct(produit: FormData) {
+    this.productService.addProduct(produit).subscribe({
+      next: (data) => {
+        setTimeout(() => this.refraish(), 1000);
+      },
+      error: (err) => alert(err.message),
+    });
+  }
+  refraish() {
+    this.productService.getProductsByCategorieId(this.id).subscribe({
+      next: (d) => (this.products = d),
+      error: (e) => alert(e.message),
+    });
   }
 }

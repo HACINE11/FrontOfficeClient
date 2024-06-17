@@ -35,13 +35,26 @@ export class BreadcrumpComponent implements OnInit {
 
     let accumulatedUrl = '';
 
-    segments.forEach((segment, index) => {
-      accumulatedUrl += `/${segment}`;
-      breadcrumbs.push({
-        label: this.formatLabel(segment),
-        url: accumulatedUrl,
-      });
-    });
+    for (let i = 0; i < segments.length; i++) {
+      const segment = segments[i];
+      const isLastSegment = i === segments.length - 1;
+
+      if (isLastSegment) {
+        // Dernier segment : extraire le nom du produit sans l'ID
+        const productNameIndex = segment.indexOf('-');
+        const productName = segment.slice(productNameIndex + 1);
+        breadcrumbs.push({
+          label: this.formatLabel(productName),
+          url: accumulatedUrl + '/' + segment,
+        });
+      } else {
+        accumulatedUrl += '/' + segment;
+        breadcrumbs.push({
+          label: this.formatLabel(segment),
+          url: accumulatedUrl,
+        });
+      }
+    }
 
     return breadcrumbs;
   }

@@ -17,6 +17,7 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import { ManagementCategoriesComponent } from './management-categories/management-categories.component';
 import { CategorieDetailsComponent } from './categorie-details/categorie-details.component';
 import { BreadcrumpComponent } from './breadcrump/breadcrump.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { BreadcrumpComponent } from './breadcrump/breadcrump.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

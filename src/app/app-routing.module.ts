@@ -30,7 +30,6 @@ const routes: Routes = [
     ],
   },
   { path: 'add-categorie', component: AddCategorieComponent },
-  { path: 'list-products', component: ListProductsComponent },
   {
     path: 'management-categorie',
     children: [

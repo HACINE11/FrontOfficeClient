@@ -29,7 +29,7 @@
   <!-- Details Column -->
   <ng-container matColumnDef="details">
     <th mat-header-cell *matHeaderCellDef> Details </th>
-    <td mat-cell *matCellDef="let category"> <a [routerLink]="['/management-categorie/',category._id]">Details</a> </td>
+    <td mat-cell *matCellDef="let category"> <a [routerLink]="['/management-categorie', category._id + '-'+ category.nomCategorie]">Details</a> </td>
   </ng-container>
 
   <!-- Actions Column -->
