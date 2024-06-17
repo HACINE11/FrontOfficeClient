@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatToolbarModule } from '@angular/material/toolbar';
 const materialComponent = [
   MatIconModule,
   MatCardModule,
@@ -31,6 +33,8 @@ const materialComponent = [
   MatSlideToggleModule,
   MatSortModule,
   MatTableModule,
+  MatBadgeModule,
+  MatToolbarModule
 ];
 @NgModule({
   declarations: [],

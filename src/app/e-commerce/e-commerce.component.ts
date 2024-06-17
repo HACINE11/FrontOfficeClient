@@ -10,7 +10,7 @@ import { CategorieProduitService } from '../core/services/categorie-produit.serv
 export class ECommerceComponent {
   categories: CategorieProduit[] = [];
   constructor(private cs: CategorieProduitService) {
-    this.cs.getCategorie().subscribe({
+    this.cs.getCategories().subscribe({
       next: (data) => {
         this.categories = data;
         console.log(this.categories);
@@ -18,5 +18,4 @@ export class ECommerceComponent {
       error: (e) => alert(e.message),
     });
   }
-
 }

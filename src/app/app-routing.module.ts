@@ -7,6 +7,7 @@ import { ProduitDetailsComponent } from './produit-details/produit-details.compo
 import { AddProductComponent } from './add-product/add-product.component';
 import { AddCategorieComponent } from './add-categorie/add-categorie.component';
 import { ListProductsComponent } from './list-products/list-products.component';
+import { ManagementCategoriesComponent } from './management-categories/management-categories.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,6 +31,13 @@ const routes: Routes = [
   },
   { path: 'add-categorie', component: AddCategorieComponent },
   { path: 'list-products', component: ListProductsComponent },
+  {
+    path: 'management-categorie',
+    children: [
+      { path: '', component: ManagementCategoriesComponent },
+      { path: ':id', component: ListProductsComponent },
+    ],
+  },
   { path: '**', component: NotfoundComponent },
 ];
 

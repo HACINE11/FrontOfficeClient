@@ -24,8 +24,14 @@ export class ListProductsComponent {
       next: (d) => (this.products = d),
       error: (e) => alert(e.message),
     });
+    if (this.id) {
+      this.productService.getProductsByCategorieId(this.id).subscribe({
+        next: (d) => (this.products = d),
+        error: (e) => alert(e.message),
+      });
+    }
   }
-  showProduct(){
+  showProduct() {
     this.toggle = !this.toggle;
   }
 }

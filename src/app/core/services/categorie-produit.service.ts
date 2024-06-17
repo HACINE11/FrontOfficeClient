@@ -8,7 +8,7 @@ import { CategorieProduit } from 'src/app/model/categorie.model';
 export class CategorieProduitService {
   apiUrl: string = 'http://127.0.0.1:9090/categorie/';
   constructor(private http: HttpClient) {}
-  getCategorie() {
+  getCategories() {
     return this.http.get<CategorieProduit[]>(this.apiUrl);
   }
   addCategorie(body: CategorieProduit) {

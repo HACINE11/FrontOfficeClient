@@ -13,7 +13,7 @@ export class ProductsComponent {
   id!: number;
   constructor(private ps: ProduitService, private ar: ActivatedRoute) {
     this.id = this.ar.snapshot.params['id'];
-    this.ps.getProducts(this.id).subscribe({
+    this.ps.getProductsByCategorieId(this.id).subscribe({
       next: (data) => {
         console.log(data);
         this.produits = data;

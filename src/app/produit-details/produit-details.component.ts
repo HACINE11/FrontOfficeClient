@@ -14,7 +14,7 @@ export class ProduitDetailsComponent {
   id!: number;
   constructor(private ps: ProduitService, private ac: ActivatedRoute) {
     this.id = this.ac.snapshot.params['idProduit'];
-    this.ps.getProduct(this.id).subscribe({
+    this.ps.getProductById(this.id).subscribe({
       next: (data) => {
         this.produit = data;
         console.log(data);

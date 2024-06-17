@@ -1,0 +1,51 @@
+<div class="container">
+    <h1>Gestion des Catégories de Produits</h1>
+    <div>
+        <button
+      class="ml-4"
+      mat-flat-button
+      color="primary" (click)="showCategorie()"
+      >
+      <mat-icon>add</mat-icon>
+      <span class="ml-2 mr-1">Ajouter</span>
+    </button>
+    <app-add-categorie *ngIf="toggle"></app-add-categorie>
+    <h2>Liste des Catégories</h2>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Categorie">
+    <th mat-header-cell *matHeaderCellDef> Categorie </th>
+    <td mat-cell *matCellDef="let category"> {{category.nomCategorie}} </td>
+  </ng-container>
+
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let category"> {{category.descriptionCategorie}} </td>
+  </ng-container>
+
+  <!-- Details Column -->
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef> Details </th>
+    <td mat-cell *matCellDef="let category"> <a [routerLink]="['/management-categorie/',category._id]">Details</a> </td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let category">
+      <button mat-icon-button color="warn" >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+</div>
+
+

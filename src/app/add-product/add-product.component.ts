@@ -54,13 +54,13 @@ export class AddProductComponent {
     private ac: ActivatedRoute,
     private router: Router
   ) {
-    this.cs.getCategorie().subscribe({
+    this.cs.getCategories().subscribe({
       next: (data) => (this.categories = data),
       error: (e) => alert(e.message),
     });
     this.id = this.ac.snapshot.params['id'];
     if (this.id) {
-      this.ps.getProduct(this.id).subscribe({
+      this.ps.getProductById(this.id).subscribe({
         next: (data) => {
           this.nomProduit = data.nomProduit;
           this.productForm.patchValue({
@@ -133,10 +133,12 @@ export class AddProductComponent {
     });
   }
   getMessage() {
-    return this.id != undefined ? 'Update le produit' : 'Ajouter le produit ';
+    return this.nomProduit != undefined
+      ? 'Update le produit'
+      : 'Ajouter le produit ';
   }
   title() {
-    return this.id != undefined
+    return this.nomProduit != undefined
       ? `Update Le Produit ${this.nomProduit}`
       : 'Ajouter Un Nouveau Produit ';
   }

@@ -14,6 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AddCategorieComponent } from './add-categorie/add-categorie.component';
 import { ListProductsComponent } from './list-products/list-products.component';
+import { ManagementCategoriesComponent } from './management-categories/management-categories.component';
+import { CategorieDetailsComponent } from './categorie-details/categorie-details.component';
+import { BreadcrumpComponent } from './breadcrump/breadcrump.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { ListProductsComponent } from './list-products/list-products.component';
     AddProductComponent,
     AddCategorieComponent,
     ListProductsComponent,
+    ManagementCategoriesComponent,
+    CategorieDetailsComponent,
+    BreadcrumpComponent,
   ],
   imports: [
     BrowserModule,

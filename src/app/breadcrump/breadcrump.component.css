@@ -1,0 +1,35 @@
+.breadcrumb-toolbar {
+    background-color: #ffffff; /* Barre blanche */
+    padding: 0 16px;
+  }
+  
+  .breadcrumb {
+    background: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .breadcrumb-item {
+    margin-right: 8px;
+    font-size: 14px; /* Taille de police réduite */
+    color: #000; /* Couleur du texte */
+  }
+  
+  .breadcrumb-item a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .breadcrumb-item::after {
+    content: '>';
+    margin-left: 8px;
+    color: #000; /* Couleur de la flèche */
+  }
+  
+  .breadcrumb-item:last-child::after {
+    content: '';
+  }
+  
