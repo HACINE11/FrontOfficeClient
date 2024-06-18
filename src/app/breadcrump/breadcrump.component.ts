@@ -37,15 +37,14 @@ export class BreadcrumpComponent implements OnInit {
 
     for (let i = 0; i < segments.length; i++) {
       const segment = segments[i];
-      const isLastSegment = i === segments.length - 1;
 
-      if (isLastSegment) {
-        // Dernier segment : extraire le nom du produit sans l'ID
-        const productNameIndex = segment.indexOf('-');
+      const productNameIndex = segment.indexOf('-');
+      if (productNameIndex != -1) {
+        accumulatedUrl += '/' + segment;
         const productName = segment.slice(productNameIndex + 1);
         breadcrumbs.push({
           label: this.formatLabel(productName),
-          url: accumulatedUrl + '/' + segment,
+          url: accumulatedUrl,
         });
       } else {
         accumulatedUrl += '/' + segment;

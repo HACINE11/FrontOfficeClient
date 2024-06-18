@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -20,7 +20,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AddProductComponent {
   categoriesProduit!: CategorieProduit[];
   id!: number;
+  @Input() idCategorie!: number;
   @Output() productAdded = new EventEmitter<FormData>();
+  categorie!: CategorieProduit;
   nomProduit!: string;
   productForm: FormGroup = new FormGroup({
     nomProduit: new FormControl('', [
@@ -44,10 +46,7 @@ export class AddProductComponent {
       Validators.min(1),
       Validators.pattern('[0-9]'),
     ]),
-    image: new FormControl(null, [
-      Validators.required,
-      this.fileTypeValidator(['image/png', 'image/jpeg', 'image/gif']),
-    ]),
+    image: new FormControl(null, []),
   });
   constructor(
     private cs: CategorieProduitService,
@@ -55,20 +54,34 @@ export class AddProductComponent {
     private ac: ActivatedRoute,
     private router: Router
   ) {
-    this.cs.getCategories().subscribe({
-      next: (data) => {
-        this.categoriesProduit = data;
-      },
-      error: (e) => alert(e.message),
-    });
-    this.id = this.ac.snapshot.params['id'];
+    let urlCategorie = this.ac.snapshot.params['id'];
+    if (urlCategorie) {
+      let index = urlCategorie.indexOf('-');
+      this.idCategorie = urlCategorie.slice(0, index);
+    }
+    if (this.idCategorie) {
+      this.cs.getCategorieById(this.idCategorie).subscribe({
+        next: (categorie) => {
+          this.categorie = categorie;
+
+          console.log(this.categorie);
+        },
+        error: (err) => alert(err),
+      });
+    }
+    let url = this.ac.snapshot.params['idProduit'];
+    if (url) {
+      let index = url.indexOf('-');
+      this.id = url.slice(0, index);
+    }
+
     if (this.id) {
       this.ps.getProductById(this.id).subscribe({
         next: (data) => {
           this.nomProduit = data.nomProduit;
           this.productForm.patchValue({
-            nom: data.nomProduit,
-            description: data.descriptionProduit,
+            nomProduit: data.nomProduit,
+            descriptionProduit: data.descriptionProduit,
             quantite: data.quantite,
             prix: data.prix,
             categorie: data.categorie.nomCategorie,
@@ -93,34 +106,20 @@ export class AddProductComponent {
       });
     }
   }
-  fileTypeValidator(allowedTypes: string[]): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const file: File = control.value;
 
-      if (file) {
-        const fileType = file.type;
-
-        if (!allowedTypes.includes(fileType)) {
-          return { fileType: true };
-        }
-      }
-
-      return null;
-    };
-  }
   addProduct() {
     const product = new FormData();
     product.append(
       'nomProduit',
-      this.productForm.get('nom')!.value.toLowerCase()
+      this.productForm.get('nomProduit')!.value.toLowerCase()
     );
 
-    product.append('categorie', this.productForm.get('categorie')!.value._id);
+    product.append('categorie', this.productForm.get('categorie')!.value);
     product.append('quantite', this.productForm.get('quantite')!.value);
     product.append('prix', this.productForm.get('prix')!.value);
     product.append(
       'descriptionProduit',
-      this.productForm.get('description')!.value
+      this.productForm.get('descriptionProduit')!.value
     );
     product.append('image', this.productForm.get('image')!.value);
 
@@ -141,8 +140,5 @@ export class AddProductComponent {
     return this.nomProduit != undefined
       ? `Update Le Produit ${this.nomProduit}`
       : 'Ajouter Un Nouveau Produit ';
-  }
-  goBack() {
-    this.router.navigate(['list-products']);
   }
 }

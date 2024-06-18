@@ -11,6 +11,9 @@ export class CategorieProduitService {
   getCategories() {
     return this.http.get<CategorieProduit[]>(this.apiUrl);
   }
+  getCategorieById(id: number) {
+    return this.http.get<CategorieProduit>(this.apiUrl + id);
+  }
   addCategorie(body: CategorieProduit) {
     return this.http.post(this.apiUrl, body);
   }

@@ -22,19 +22,14 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'add-product',
-    children: [
-      { path: '', component: AddProductComponent },
-      { path: ':id', component: AddProductComponent },
-    ],
-  },
+
   { path: 'add-categorie', component: AddCategorieComponent },
   {
     path: 'management-categorie',
     children: [
       { path: '', component: ManagementCategoriesComponent },
       { path: ':id', component: ListProductsComponent },
+      { path: ':idCategorie/:idProduit', component: AddProductComponent },
     ],
   },
   { path: '**', component: NotfoundComponent },
