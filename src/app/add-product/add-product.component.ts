@@ -46,7 +46,7 @@ export class AddProductComponent {
       Validators.min(1),
       Validators.pattern('[0-9]'),
     ]),
-    image: new FormControl(null, []),
+    image: new FormControl(null, [Validators.required]),
   });
   constructor(
     private cs: CategorieProduitService,
@@ -70,14 +70,27 @@ export class AddProductComponent {
       });
     }
     let url = this.ac.snapshot.params['idProduit'];
+    let urlCat = this.ac.snapshot.params['idCategorie'];
     if (url) {
       let index = url.indexOf('-');
       this.id = url.slice(0, index);
+      let indexCategorie = urlCat.indexOf('-');
+      this.idCategorie = urlCat.slice(0, indexCategorie);
     }
 
     if (this.id) {
+      this.cs.getCategorieById(this.idCategorie).subscribe({
+        next: (categorie) => {
+          this.categorie = categorie;
+
+          console.log(this.categorie);
+        },
+        error: (err) => alert(err),
+      });
+
       this.ps.getProductById(this.id).subscribe({
         next: (data) => {
+          this.categorie = data.categorie;
           this.nomProduit = data.nomProduit;
           this.productForm.patchValue({
             nomProduit: data.nomProduit,
@@ -98,15 +111,22 @@ export class AddProductComponent {
   // target: Refers to the element that triggered the event (in this case, the file input element).
   // files: A FileList object containing the list of files selected by the user.
   // [0]: Index to access the first file in the FileList.
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.productForm.patchValue({
-        image: file,
-      });
+  onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length) {
+      const file = input.files[0];
+      // Validate file type
+      const validTypes = ['image/png', 'image/jpeg', 'image/gif'];
+      if (!validTypes.includes(file.type)) {
+        this.productForm.get('image')?.setErrors({ fileType: true });
+      } else {
+        this.productForm.patchValue({
+          image: file,
+        });
+      }
     }
   }
-
+  updateProduct(body: FormData) {}
   addProduct() {
     const product = new FormData();
     product.append(

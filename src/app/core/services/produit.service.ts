@@ -17,6 +17,9 @@ export class ProduitService {
   getAllProducts() {
     return this.http.get<Produit[]>(this.apiUrl);
   }
+  updateProduct(id: number, body: FormData) {
+    return this.http.put(this.apiUrl + id, body);
+  }
 
   addProduct(body: FormData) {
     return this.http.post(this.apiUrl, body);

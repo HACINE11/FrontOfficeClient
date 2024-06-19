@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategorieProduitService } from '../core/services/categorie-produit.service';
+import { CategorieProduit } from '../model/categorie.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-categorie',
@@ -12,7 +14,7 @@ export class AddCategorieComponent {
     nomCategorie: new FormControl('', [
       Validators.required,
       Validators.min(3),
-      Validators.pattern('[a-zAZ ]*'),
+      Validators.pattern('^[a-zA-Z ]+$'),
     ]),
     descriptionCategorie: new FormControl('', [
       Validators.required,
@@ -22,7 +24,26 @@ export class AddCategorieComponent {
   alert = 0;
   message: string = '';
   id!: number;
-  constructor(private cs: CategorieProduitService) {}
+  @Output() categorie = new EventEmitter<CategorieProduit>();
+  constructor(private cs: CategorieProduitService, private ac: ActivatedRoute) {
+    let url = this.ac.snapshot.params['id'];
+    if (url) {
+      let index = url.indexOf('-');
+      this.id = url.slice(0, index);
+      if (this.id) {
+        this.getMessage();
+        this.cs.getCategorieById(this.id).subscribe({
+          next: (data) => {
+            this.categorieForm.patchValue({
+              nomCategorie: data.nomCategorie,
+              descriptionCategorie: data.descriptionCategorie,
+            });
+          },
+        });
+      }
+    }
+  }
+
   addCategorie() {
     const categorie = {
       _id: 0,
@@ -30,19 +51,8 @@ export class AddCategorieComponent {
       descriptionCategorie: this.categorieForm.get('descriptionCategorie')
         ?.value,
     };
-    this.cs.addCategorie(categorie).subscribe({
-      next: (d) => {
-        console.log(d);
-        this.message = `la categorie ${
-          this.categorieForm.get('nomCategorie')?.value
-        } has been successfully added `;
-        this.alert = 1;
-        this.categorieForm.reset();
-      },
-      error: (e) => {
-        (this.message = e.message), (this.alert = 2);
-      },
-    });
+    this.categorie.emit(categorie);
+    this.categorieForm.reset();
   }
   getMessage() {
     return this.id != undefined

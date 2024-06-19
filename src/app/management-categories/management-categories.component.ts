@@ -11,6 +11,8 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ManagementCategoriesComponent {
   categories!: CategorieProduit[];
   toggle = false;
+  alert = 0;
+  message: string = '';
   displayedColumns: string[] = [
     'Categorie',
     'description',
@@ -20,13 +22,29 @@ export class ManagementCategoriesComponent {
   dataSource = new MatTableDataSource<CategorieProduit>();
 
   constructor(private cs: CategorieProduitService) {
-    this.cs.getCategories().subscribe({
-      next: (d) => (this.dataSource.data = d),
-      error: (e) => alert(e.message),
-    });
+    this.refresh();
   }
 
   showCategorie() {
     this.toggle = !this.toggle;
+  }
+  addCategorie(c: CategorieProduit) {
+    this.cs.addCategorie(c).subscribe({
+      next: (d: any) => {
+        this.message = d.message;
+        this.alert = 1;
+        setTimeout(() => this.refresh(), 1000);
+      },
+      error: (e) => {
+        this.message = e.message;
+        this.alert = 2;
+      },
+    });
+  }
+  refresh() {
+    this.cs.getCategories().subscribe({
+      next: (d) => (this.dataSource.data = d),
+      error: (e) => alert(e.message),
+    });
   }
 }

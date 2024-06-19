@@ -9,7 +9,7 @@
     {{ message }}
   </div>
 <div class="container">
-    <h1>Ajouter une Nouvelle Catégorie</h1>
+    <h1>{{getMessage()}}</h1>
     <form [formGroup]="categorieForm">
         <div class="form-group">
             <label for="categorieName">Nom de la Catégorie</label>
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" [disabled]="categorieForm.invalid" (click)="addCategorie()">Ajouter la Catégorie</button>
+            <button type="submit" [disabled]="categorieForm.invalid" (click)="addCategorie()">{{getMessage()}}</button>
         </div>
     </form>
 </div>

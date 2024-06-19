@@ -17,4 +17,10 @@ export class CategorieProduitService {
   addCategorie(body: CategorieProduit) {
     return this.http.post(this.apiUrl, body);
   }
+  updateCategorie(
+    id: number,
+    body: { nomCategorie: string; descriptionCategorie: string }
+  ) {
+    return this.http.put(this.apiUrl + id, body);
+  }
 }

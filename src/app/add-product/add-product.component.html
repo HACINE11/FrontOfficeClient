@@ -62,8 +62,8 @@
       <input type="file" id="image" name="image" (change)="onFileChange($event)" required formControlName="image">
       <div *ngIf="productForm.get('image')!.invalid && productForm.get('image')!.touched" class="text-danger">
         <div *ngIf="productForm.get('image')!.errors!['required']">Image est requise.</div>
-        <!-- <div *ngIf="productForm.get('image')!.errors!['fileTypeValidator']">Seuls les fichiers PNG, JPG et GIF sont
-          autorisés.</div> -->
+          <div *ngIf="productForm.get('image')!.errors!['fileTypeValidator']">Seuls les fichiers PNG, JPG et GIF sont -->
+          autorisés.</div>
       </div> 
     </div>
     <div class="form-group">

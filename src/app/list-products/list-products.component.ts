@@ -3,8 +3,9 @@ import { ProduitService } from '../core/services/produit.service';
 import { FormControl } from '@angular/forms';
 import { Produit } from '../model/produit.model';
 import { MatSort } from '@angular/material/sort';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategorieProduitService } from '../core/services/categorie-produit.service';
+import { CategorieProduit } from '../model/categorie.model';
 
 @Component({
   selector: 'app-list-products',
@@ -17,11 +18,13 @@ export class ListProductsComponent {
   idCategorie!: number;
   toggle = false;
   nomCategorie!: string;
-
+  alert = 0;
+  message: string = '';
   constructor(
     private productService: ProduitService,
     private ar: ActivatedRoute,
-    private cs: CategorieProduitService
+    private cs: CategorieProduitService,
+    private router: Router
   ) {
     let url = this.ar.snapshot.params['id'];
     if (url) {
@@ -41,13 +44,49 @@ export class ListProductsComponent {
     this.toggle = !this.toggle;
     console.log(this.toggle);
   }
+  updateProduct(id: number, produit: FormData) {
+    this.productService.updateProduct(id, produit).subscribe({
+      next: (d) => {
+        this.alert = 1;
+        this.message = 'product update successfully';
+        this.router.navigate([
+          '/management-categorie',
+          this.idCategorie + '-' + this.nomCategorie,
+        ]);
+      },
+      error: (e) => {
+        this.alert = 2;
+        this.message = e.message;
+      },
+    });
+  }
   addProduct(produit: FormData) {
     this.productService.addProduct(produit).subscribe({
       next: (data) => {
+        this.message = `${produit.get('nomProduit')} added successfully`;
+        this.alert = 1;
         console.log(data);
         setTimeout(() => this.refraish(), 1000);
       },
-      error: (err) => alert(err.message),
+      error: (err) => {
+        this.message = err.message;
+        this.alert = 2;
+      },
+    });
+  }
+  updateCategorie(body: CategorieProduit) {
+    this.cs.updateCategorie(this.idCategorie, body).subscribe({
+      next: (d) => {
+        this.alert = 1;
+        this.message = 'categorie update successfully';
+        this.router.navigate(['management-categorie']);
+        console.log(body);
+      },
+      error: (e) => {
+        this.alert = 2;
+        this.message = e.message;
+        console.log(body);
+      },
     });
   }
   refraish() {
