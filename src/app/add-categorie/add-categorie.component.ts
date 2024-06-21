@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategorieProduitService } from '../core/services/categorie-produit.service';
 import { CategorieProduit } from '../model/categorie.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-categorie',
@@ -25,22 +25,22 @@ export class AddCategorieComponent {
   message: string = '';
   id!: number;
   @Output() categorie = new EventEmitter<CategorieProduit>();
-  constructor(private cs: CategorieProduitService, private ac: ActivatedRoute) {
-    let url = this.ac.snapshot.params['id'];
-    if (url) {
-      let index = url.indexOf('-');
-      this.id = url.slice(0, index);
-      if (this.id) {
-        this.getMessage();
-        this.cs.getCategorieById(this.id).subscribe({
-          next: (data) => {
-            this.categorieForm.patchValue({
-              nomCategorie: data.nomCategorie,
-              descriptionCategorie: data.descriptionCategorie,
-            });
-          },
-        });
-      }
+  constructor(
+    private cs: CategorieProduitService,
+    private ac: ActivatedRoute,
+    private route: Router
+  ) {
+    this.id = this.ac.snapshot.params['idCategorie'];
+    if (this.id) {
+      this.cs.getCategorieById(this.id).subscribe({
+        next: (data) => {
+          this.categorieForm.patchValue({
+            nomCategorie: data.nomCategorie,
+            descriptionCategorie: data.descriptionCategorie,
+          });
+        },
+        error: (e) => alert(e.message),
+      });
     }
   }
 
@@ -53,6 +53,19 @@ export class AddCategorieComponent {
     };
     this.categorie.emit(categorie);
     this.categorieForm.reset();
+    if (this.id) {
+      this.cs.updateCategorie(this.id, categorie).subscribe({
+        next: (d) => {
+          this.alert = 1;
+          this.message = 'categorie update successfully';
+          this.route.navigate(['management-categorie']);
+        },
+        error: (e) => {
+          this.alert = 2;
+          this.message = e.message;
+        },
+      });
+    }
   }
   getMessage() {
     return this.id != undefined

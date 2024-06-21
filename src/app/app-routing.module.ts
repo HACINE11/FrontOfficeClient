@@ -28,6 +28,7 @@ const routes: Routes = [
     path: 'management-categorie',
     children: [
       { path: '', component: ManagementCategoriesComponent },
+      { path: 'update/:idCategorie', component: AddCategorieComponent },
       { path: ':id', component: ListProductsComponent },
       { path: ':idCategorie/:idProduit', component: AddProductComponent },
     ],

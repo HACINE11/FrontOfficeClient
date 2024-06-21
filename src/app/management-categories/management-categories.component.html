@@ -36,17 +36,23 @@
     <td mat-cell *matCellDef="let category"> {{category.descriptionCategorie}} </td>
   </ng-container>
 
+  <!-- Update Column -->
+  <ng-container matColumnDef="update">
+    <th mat-header-cell *matHeaderCellDef> Update </th>
+    <td mat-cell *matCellDef="let category"> <a [routerLink]="['/management-categorie/update',category._id]" >Update Categorie </a> </td>
+  </ng-container>
+
   <!-- Details Column -->
   <ng-container matColumnDef="details">
     <th mat-header-cell *matHeaderCellDef> Details </th>
-    <td mat-cell *matCellDef="let category"> <a [routerLink]="['/management-categorie', category._id + '-'+ category.nomCategorie]">Details</a> </td>
+    <td mat-cell *matCellDef="let category"> <a [routerLink]="['/management-categorie', category._id + '-'+ category.nomCategorie.trim()]">Liste produits</a> </td>
   </ng-container>
 
   <!-- Actions Column -->
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let category">
-      <button mat-icon-button color="warn" >
+      <button mat-icon-button color="warn" (click)="deleteCategorie(category._id)">
         <mat-icon>delete</mat-icon>
       </button>
     </td>

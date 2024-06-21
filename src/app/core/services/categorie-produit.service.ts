@@ -23,4 +23,7 @@ export class CategorieProduitService {
   ) {
     return this.http.put(this.apiUrl + id, body);
   }
+  deleteCategorie(id: number) {
+    return this.http.delete(this.apiUrl + id);
+  }
 }

@@ -16,6 +16,7 @@ export class ManagementCategoriesComponent {
   displayedColumns: string[] = [
     'Categorie',
     'description',
+    'update',
     'details',
     'actions',
   ];
@@ -43,8 +44,27 @@ export class ManagementCategoriesComponent {
   }
   refresh() {
     this.cs.getCategories().subscribe({
-      next: (d) => (this.dataSource.data = d),
+      next: (d) => {
+        this.dataSource.data = d;
+        this.categories = d;
+      },
       error: (e) => alert(e.message),
+    });
+  }
+  deleteCategorie(id: number) {
+    this.cs.deleteCategorie(id).subscribe({
+      next: (d: any) => {
+        this.message = 'delete successfuly';
+        this.alert = 1;
+        console.log(this.categories);
+        this.categories = this.categories.filter((cat) => cat._id != id);
+        this.dataSource.data = this.categories;
+        console.log(this.categories);
+      },
+      error: (e) => {
+        this.message = e.message;
+        this.alert = 2;
+      },
     });
   }
 }

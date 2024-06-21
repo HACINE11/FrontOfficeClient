@@ -74,21 +74,8 @@ export class ListProductsComponent {
       },
     });
   }
-  updateCategorie(body: CategorieProduit) {
-    this.cs.updateCategorie(this.idCategorie, body).subscribe({
-      next: (d) => {
-        this.alert = 1;
-        this.message = 'categorie update successfully';
-        this.router.navigate(['management-categorie']);
-        console.log(body);
-      },
-      error: (e) => {
-        this.alert = 2;
-        this.message = e.message;
-        console.log(body);
-      },
-    });
-  }
+  deleteProduct(id: number) {}
+
   refraish() {
     this.productService.getProductsByCategorieId(this.idCategorie).subscribe({
       next: (d) => (this.products = d),
