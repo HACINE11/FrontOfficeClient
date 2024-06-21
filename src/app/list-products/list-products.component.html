@@ -50,7 +50,7 @@
             <td>{{ product.prix }}</td>
             <td><a [routerLink]="[ product._id +'-'+ product.nomProduit]">Details</a></td>
             <td>
-                <button mat-icon-button>
+                <button mat-icon-button (click)="deleteProduct(product._id)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>

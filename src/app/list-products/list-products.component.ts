@@ -74,7 +74,19 @@ export class ListProductsComponent {
       },
     });
   }
-  deleteProduct(id: number) {}
+  deleteProduct(id: number) {
+    this.productService.deleteProduct(id).subscribe({
+      next: (d) => {
+        this.alert = 1;
+        this.message = 'product deleted successfully';
+        this.products = this.products.filter((produit) => produit._id != id);
+      },
+      error: (e) => {
+        this.alert = 2;
+        this.message = e.message;
+      },
+    });
+  }
 
   refraish() {
     this.productService.getProductsByCategorieId(this.idCategorie).subscribe({

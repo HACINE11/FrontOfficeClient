@@ -24,4 +24,7 @@ export class ProduitService {
   addProduct(body: FormData) {
     return this.http.post(this.apiUrl, body);
   }
+  deleteProduct(id: number) {
+    return this.http.delete(this.apiUrl + id);
+  }
 }
