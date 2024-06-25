@@ -1,0 +1,53 @@
+<ng-container *ngIf="products.length !=0; else emptyCart">
+  <div class="container">
+    <div class="card-table">
+      <div class="cart-product">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Sr.No</th>
+              <th>Product Name</th>
+              <th>Product Image</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of products; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.nomProduit }}</td>
+              <td><img style="width: 120px;" src="{{ item.image }}" alt=""></td>
+              <td style="width: 25%;">{{ item.descriptionProduit }}</td>
+              <td style="width: 12%;">{{ item.prix }}</td>
+              <td>
+                <input type="number" [(ngModel)]="cart.items[i].quantity"  max="cart.items[i].quantite">
+              </td>
+              <td> {{ item.prix * cart.items[i].quantity }}</td>
+              <td>
+                <button (click)="updatePanier(item._id)"><mat-icon>delete</mat-icon></button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5"></td>
+              <td><button  class="btn btn-danger">Empty Cart</button></td>
+              <td><strong>Grand Total : ${{cart.totalAmount}}</strong></td>
+              <td><button  class="btn btn-success">Place Order</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #emptyCart>
+  <div class="center">
+    <img src="../../assets/images/e-commerce-vn-546.jpg" alt="">
+    <h4>Your cart is empty.</h4>
+    <h6>Add products now</h6>
+    <button [routerLink]="['/home']" class="btn btn-primary">Shop now!</button>
+  </div>
+</ng-template>

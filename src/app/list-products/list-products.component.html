@@ -1,0 +1,59 @@
+<div class="alert alert-success" role="alert" *ngIf="alert == 1">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="10" height="10">
+      <path
+        d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+    </svg>
+    {{ message }}
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="alert == 2">
+    {{ message }}
+  </div>
+
+<div>
+    <button
+  class="ml-4"
+  mat-flat-button
+  color="primary" (click)="showProduct()"
+  >
+  <mat-icon>add</mat-icon>
+  <span class="ml-2 mr-1">Ajouter</span>
+</button>
+<app-add-product *ngIf="toggle" (productAdded)="addProduct($event)" (emitId)="getIdProduct($event)" ></app-add-product>
+  
+</div>
+
+<table class="table table-striped" *ngIf="products.length > 0">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Nom du Produit</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Détails</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>
+                <div class="flex items-center">
+                    <div class="relative flex flex-0 items-center justify-center w-12 h-12 mr-6 rounded overflow-hidden border">
+                        <img class="w-8 h-8 object-cover" *ngIf="product.image" [alt]="'Product thumbnail image'" [src]="product.image">
+                        <div class="flex items-center justify-center w-full h-full text-xs font-semibold leading-none text-center uppercase" *ngIf="!product.image">
+                            NO THUMB
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>{{ product.nomProduit }}</td>
+            <td>{{ product.quantite }}</td>
+            <td>{{ product.prix }}</td>
+            <td><a [routerLink]="[ product._id +'-'+ product.nomProduit]">Details</a></td>
+            <td>
+                <button mat-icon-button (click)="deleteProduct(product._id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

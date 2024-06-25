@@ -1,0 +1,33 @@
+<div class="container" *ngIf="products.length; else noTransactions">
+    <h2>Transaction History</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Transaction ID</th>
+          <th>Date d'achat</th>
+          <th>Quantity/th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of cart.items">
+          <td>{{ transaction._id }}</td>
+          <td>{{ transaction.purchaseDate }}</td>
+          <td>{{ transaction.quantity| currency }}</td>
+          <td>{{ transaction.status }}</td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td><strong>Total:</strong></td>
+            <td><strong>{{ cart.totalAmount| currency }}</strong></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-template #noTransactions>
+    <div class="alert alert-info">
+      <strong>No transactions found.</strong>
+    </div>
+  </ng-template>
+  

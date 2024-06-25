@@ -1,0 +1,31 @@
+<div class="products-container">
+    <div class="container" *ngIf="produits.length ==0"><h1>Cette categorie ne contient aucun produit</h1></div>
+    <div *ngFor="let produit of produits" class="product-card">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{produit.nomProduit}}</mat-card-title>
+                <mat-card-subtitle>Produit</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image [src]="produit.image" alt="Photo of product">
+            <mat-card-content>
+                <p>{{produit.descriptionProduit}}</p>
+                <!-- Stock -->
+                <div class="stock-indicator">
+                    <span>Stock: {{produit.quantite}}</span>
+                    <!-- Low stock -->
+                    <div class="stock-level low" *ngIf="produit.quantite < 20"></div>
+                    <!-- Medium stock -->
+                    <div class="stock-level medium" *ngIf="produit.quantite >= 20 && produit.quantite < 30"></div>
+                    <!-- High stock -->
+                    <div class="stock-level high" *ngIf="produit.quantite >= 30"></div>
+                </div>
+                <p>Price: {{produit.prix | currency: 'TND'}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button [routerLink]="[produit._id + '-' + produit.nomProduit.trim()]">Details</button>
+                
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+.cart-button .mat-icon {
+    position: relative;
+  }
+  
+  .cart-button .mat-badge-content {
+    top: -10px; /* Ajustez cette valeur pour positionner verticalement */
+    right: -30px; /* Ajustez cette valeur pour positionner horizontalement */
+    transform: scale(0.9); /* Ajustez cette valeur pour réduire la taille du badge */
+  }
+  

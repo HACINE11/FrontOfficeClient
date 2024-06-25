@@ -1,0 +1,77 @@
+<div class="container">
+  <h1>{{title()}}</h1>
+  <form [formGroup]="productForm">
+    <div class="form-group">
+      <label for="productName">Nom du Produit</label>
+      <input type="text" id="productName" name="productName" required formControlName="nomProduit">
+      <div
+        *ngIf="productForm.get('nomProduit')!.invalid && (productForm.get('nomProduit')!.touched || productForm.get('nomProduit')!.dirty)">
+        <small class="alerte" *ngIf="productForm.get('nomProduit')!.errors!['required']">Nom du produit est
+          obligatoire!</small>
+        <small class="alerte" *ngIf="productForm.get('nomProduit')!.errors!['minlength']">Le nom du produit doit
+          contenir au moins 3 caractères!</small>
+        <small class="alerte" *ngIf="productForm.get('nomProduit')!.errors!['pattern']">Le nom du produit doit être en
+          alphabet seulement</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantité</label>
+      <input type="number" id="quantity" name="quantity" min="0" required formControlName="quantite">
+      <div *ngIf="productForm.get('quantite')?.invalid && productForm.get('quantite')?.touched">
+        <small class="alerte" *ngIf="productForm.get('quantite')!.errors!['required']">La quantité est requise.</small>
+        <small class="alerte" *ngIf="productForm.get('quantite')!.errors!['min']">La quantité doit être supérieure à
+          zéro.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Prix</label>
+      <input type="number" step="0.1" id="price" name="price" min="0" required formControlName="prix">
+      <div *ngIf="productForm.get('prix')?.invalid && productForm.get('prix')?.touched">
+        <small class="alerte" *ngIf="productForm.get('prix')!.errors!['required']">Le prix est requise.</small>
+        <small class="alerte" *ngIf="productForm.get('prix')!.errors!['min']">Le prix doit être supérieure à
+          zéro.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Categorie</mat-label>
+          <mat-select formControlName="categorie" required>
+            <mat-option [value]="categorie._id">{{ categorie.nomCategorie }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- <div class="form-group">
+      <label for="category">Categorie</label>
+      <input type="text" id="category" name="category" formControlName="categorie" [value]="categorie.nomCategorie" readonly>
+    </div> -->
+
+    <div class="form-group">
+      <label for="descriptionProduit">Description du Produit</label>
+      <textarea id="description" name="description" rows="4" required formControlName="descriptionProduit"></textarea>
+      <div
+        *ngIf="productForm.get('descriptionProduit')!.invalid && (productForm.get('descriptionProduit')!.touched || productForm.get('descriptionProduit')!.dirty)">
+        <small class="alerte" *ngIf="productForm.get('descriptionProduit')!.errors!['required']">description du produit
+          est obligatoire!</small>
+        <small class="alerte" *ngIf="productForm.get('descriptionProduit')!.errors!['minlength']">La description du
+          produit doit contenir au moins 3 caractères!</small>
+        <small class="alerte" *ngIf="productForm.get('descriptionProduit')!.errors!['pattern']">La description du
+          produit doit être en alphabet seulement</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="image">Image du Produit (PNG, JPG, GIF uniquement)</label>
+      <input type="file" id="image" name="image" (change)="onFileChange($event)" required formControlName="image">
+      <div *ngIf="productForm.get('image')!.invalid && productForm.get('image')!.touched" class="text-danger">
+        <div *ngIf="productForm.get('image')!.errors!['required']">Image est requise.</div>
+          <div *ngIf="productForm.get('image')!.errors!['fileTypeValidator']">Seuls les fichiers PNG, JPG et GIF sont -->
+          autorisés.</div>
+      </div> 
+    </div>
+    <div class="form-group">
+      <button type="submit" [disabled]="productForm.invalid" (click)="addProduct()">{{getMessage()}}</button>
+    </div>
+  </form>
+</div>

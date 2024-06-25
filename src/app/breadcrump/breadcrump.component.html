@@ -1,0 +1,13 @@
+<nav aria-label="breadcrumb">
+    <mat-toolbar class="breadcrumb-toolbar">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs; let last = last">
+          <a *ngIf="!last; else lastBreadcrumb" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+          <ng-template #lastBreadcrumb>
+            <span>{{ breadcrumb.label.replaceAll('%20',' ') }}</span>
+          </ng-template>
+        </li>
+      </ol>
+    </mat-toolbar>
+  </nav>
+  
