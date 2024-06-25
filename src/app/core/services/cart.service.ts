@@ -24,6 +24,6 @@ export class CartService {
     return this.http.get<Carte>(this.urlApi + 'get-orders/' + idClient);
   }
   confirmPurchase(body: { carte: Carte }) {
-    return this.http.put(this.urlApi + 'confirm-purchase/', body);
+    return this.http.put(this.urlApi + 'confirm-purchase', body);
   }
 }

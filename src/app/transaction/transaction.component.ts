@@ -22,6 +22,7 @@ export class TransactionComponent implements OnInit {
     this.cartService.getTransaction(this.idClient).subscribe({
       next: (data: Carte) => {
         this.cart = data;
+
         this.idProducts = data.items.map((item) => item.product._id);
 
         this.idProducts.forEach((id) => {

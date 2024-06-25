@@ -70,4 +70,18 @@ export class PanierComponent implements OnInit {
       error: (e) => alert(e.message),
     });
   }
+  confirmPurchase() {
+    console.log(this.cart);
+    this.cartService.confirmPurchase({ carte: this.cart }).subscribe({
+      next: (data: any) => {
+        if (data.erreur) {
+          alert(data.erreur);
+        } else {
+          alert(data.message);
+        }
+        this.router.navigate(['transaction']);
+      },
+      error: (e) => alert(e.message),
+    });
+  }
 }
