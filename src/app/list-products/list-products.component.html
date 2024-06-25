@@ -18,7 +18,7 @@
   <mat-icon>add</mat-icon>
   <span class="ml-2 mr-1">Ajouter</span>
 </button>
-<app-add-product *ngIf="toggle" (productAdded)="addProduct($event)"></app-add-product>
+<app-add-product *ngIf="toggle" (productAdded)="addProduct($event)" (emitId)="getIdProduct($event)" ></app-add-product>
   
 </div>
 

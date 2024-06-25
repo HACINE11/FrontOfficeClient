@@ -18,6 +18,8 @@ import { ManagementCategoriesComponent } from './management-categories/managemen
 import { CategorieDetailsComponent } from './categorie-details/categorie-details.component';
 import { BreadcrumpComponent } from './breadcrump/breadcrump.component';
 import { CommonModule } from '@angular/common';
+import { PanierComponent } from './panier/panier.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { CommonModule } from '@angular/common';
     ManagementCategoriesComponent,
     CategorieDetailsComponent,
     BreadcrumpComponent,
+    PanierComponent,
+    TransactionComponent,
   ],
   imports: [
     BrowserModule,

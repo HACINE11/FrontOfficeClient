@@ -9,7 +9,7 @@
                   <p class="card-text">{{cat.descriptionCategorie}}</p>
               </div>
               <div class="card-footer text-center">
-                  <a [routerLink]="['/home/', cat._id]" class="btn btn-primary">Voir plus</a>
+                  <a [routerLink]="['/home/', cat._id + '-' + cat.nomCategorie.trim()]" class="btn btn-primary">Voir plus</a>
               </div>
           </div>
       </div>

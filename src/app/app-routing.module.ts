@@ -8,6 +8,8 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { AddCategorieComponent } from './add-categorie/add-categorie.component';
 import { ListProductsComponent } from './list-products/list-products.component';
 import { ManagementCategoriesComponent } from './management-categories/management-categories.component';
+import { PanierComponent } from './panier/panier.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,13 +19,15 @@ const routes: Routes = [
       { path: '', component: ECommerceComponent },
       { path: ':id', component: ProductsComponent },
       {
-        path: ':id/details/:idProduit',
+        path: ':idCategorie/:idProduit',
         component: ProduitDetailsComponent,
       },
     ],
   },
 
   { path: 'add-categorie', component: AddCategorieComponent },
+  { path: 'panier', component: PanierComponent },
+  { path: 'transaction', component: TransactionComponent },
   {
     path: 'management-categorie',
     children: [

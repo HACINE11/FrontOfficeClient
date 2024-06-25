@@ -22,31 +22,33 @@ export class AddProductComponent {
   id!: number;
   @Input() idCategorie!: number;
   @Output() productAdded = new EventEmitter<FormData>();
+  @Output() emitProduct: EventEmitter<FormData> = new EventEmitter<FormData>();
+  @Output() emitId: EventEmitter<number> = new EventEmitter<number>();
   categorie!: CategorieProduit;
   nomProduit!: string;
   productForm: FormGroup = new FormGroup({
     nomProduit: new FormControl('', [
       Validators.required,
-      Validators.minLength(3),
-      Validators.pattern('^[a-zA-Z ]+$'),
+      //Validators.minLength(3),
+      //Validators.pattern('^[a-zA-Z ]+$'),
     ]),
     descriptionProduit: new FormControl('', [
       Validators.required,
-      Validators.minLength(5),
-      Validators.pattern('^[a-zA-Z ]+$'),
+      //Validators.minLength(5),
+      //Validators.pattern('^[a-zA-Z ]+$'),
     ]),
     categorie: new FormControl('', [Validators.required]),
     quantite: new FormControl(0, [
       Validators.required,
       Validators.min(1),
-      Validators.pattern('[0-9]'),
+      //Validators.pattern('[0-9]'),
     ]),
     prix: new FormControl(0, [
       Validators.required,
       Validators.min(1),
-      Validators.pattern('[0-9]'),
+      //Validators.pattern('[0-9]'),
     ]),
-    image: new FormControl(null, [Validators.required]),
+    image: new FormControl(null),
   });
   constructor(
     private cs: CategorieProduitService,
@@ -100,7 +102,7 @@ export class AddProductComponent {
             categorie: data.categorie.nomCategorie,
             image: data.image,
           });
-          console.log(data.categorie.nomCategorie);
+          //console.log(data.categorie.nomCategorie);
         },
         error: (e) => alert(e.message),
       });
@@ -126,7 +128,7 @@ export class AddProductComponent {
       }
     }
   }
-  updateProduct(body: FormData) {}
+
   addProduct() {
     const product = new FormData();
     product.append(
@@ -149,7 +151,21 @@ export class AddProductComponent {
     if (this.id == undefined) {
       this.productForm.reset();
     }
+
     this.productAdded.emit(product);
+    if (this.id) {
+      this.ps.updateProduct(this.id, product).subscribe({
+        next: (d) => {
+          // this.alert = 1;
+          // this.message = 'product update successfully';
+
+          this.router.navigate(['/management-categorie']);
+        },
+        error: (e) => {
+          alert(e.message);
+        },
+      });
+    }
   }
   getMessage() {
     return this.nomProduit != undefined

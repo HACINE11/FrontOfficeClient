@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategorieProduitService } from '../core/services/categorie-produit.service';
 import { CategorieProduit } from '../model/categorie.model';
+import { AddProductComponent } from '../add-product/add-product.component';
 
 @Component({
   selector: 'app-list-products',
@@ -16,6 +17,7 @@ export class ListProductsComponent {
   products!: Produit[];
   displayedColumns: string[] = ['image', 'nom', 'quantite', 'prix', 'details'];
   idCategorie!: number;
+  idProduit!: number;
   toggle = false;
   nomCategorie!: string;
   alert = 0;
@@ -44,11 +46,14 @@ export class ListProductsComponent {
     this.toggle = !this.toggle;
     console.log(this.toggle);
   }
-  updateProduct(id: number, produit: FormData) {
+  update(id: number, produit: FormData) {
+    console.log(id);
+    console.log('aaaaaaaaaanisssssssss');
     this.productService.updateProduct(id, produit).subscribe({
       next: (d) => {
         this.alert = 1;
         this.message = 'product update successfully';
+
         this.router.navigate([
           '/management-categorie',
           this.idCategorie + '-' + this.nomCategorie,
@@ -93,5 +98,10 @@ export class ListProductsComponent {
       next: (d) => (this.products = d),
       error: (e) => alert(e.message),
     });
+  }
+  getIdProduct(id: number) {
+    console.log('id nekho fi');
+    console.log(id);
+    this.idProduit = id;
   }
 }

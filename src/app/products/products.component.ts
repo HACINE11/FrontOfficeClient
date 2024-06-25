@@ -12,13 +12,17 @@ export class ProductsComponent {
   produits!: Produit[];
   id!: number;
   constructor(private ps: ProduitService, private ar: ActivatedRoute) {
-    this.id = this.ar.snapshot.params['id'];
-    this.ps.getProductsByCategorieId(this.id).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.produits = data;
-      },
-      error: (e) => alert(e.message),
-    });
+    let url = this.ar.snapshot.params['id'];
+    if (url) {
+      let index = url.indexOf('-');
+      this.id = url.slice(0, index);
+      this.ps.getProductsByCategorieId(this.id).subscribe({
+        next: (data) => {
+          console.log(data);
+          this.produits = data;
+        },
+        error: (e) => alert(e.message),
+      });
+    }
   }
 }

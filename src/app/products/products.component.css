@@ -38,9 +38,15 @@
   }
   
   .example-card mat-card-actions {
-    flex-shrink: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centrer horizontalement */
+    margin-top: 16px; /* Ajouter un peu d'espace en haut */
+  }
+  
+  .example-card mat-card-actions button {
+    width: 120px; /* Ajuster la largeur du bouton selon vos besoins */
+    border-radius: 20px; /* Donner une forme arrondie au bouton */
+    color : green;
   }
   .stock-indicator {
     display: flex;

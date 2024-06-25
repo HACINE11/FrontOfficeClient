@@ -19,12 +19,19 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/management-categorie">Management</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/transaction">Transaction</a>
+        </li>
       </ul>
-      <div class="d-flex ms-auto">
-        <button mat-icon-button class="cart-button">
-          <mat-icon matBadge="8" matBadgePosition="below after" matBadgeOverlap="false">shopping_cart</mat-icon>
-        </button>
-      </div>
+      
+<div class="d-flex ms-auto">
+  <button mat-icon-button class="cart-button" (click)="nvaigateToPanier()">
+    <mat-icon [matBadge]="8" matBadgePosition="below after" matBadgeOverlap="false">
+      shopping_cart
+    </mat-icon>
+  </button>
+</div>
+
     </div>
   </div>
 </nav>
