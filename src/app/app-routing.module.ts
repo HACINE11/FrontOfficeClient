@@ -10,6 +10,7 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import { ManagementCategoriesComponent } from './management-categories/management-categories.component';
 import { PanierComponent } from './panier/panier.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { ClientFormComponent } from './client-form/client-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,6 +29,8 @@ const routes: Routes = [
   { path: 'add-categorie', component: AddCategorieComponent },
   { path: 'panier', component: PanierComponent },
   { path: 'transaction', component: TransactionComponent },
+  { path: 'Ajouter Avenir Client', component: ClientFormComponent },
+
   {
     path: 'management-categorie',
     children: [

@@ -20,6 +20,10 @@ import { BreadcrumpComponent } from './breadcrump/breadcrump.component';
 import { CommonModule } from '@angular/common';
 import { PanierComponent } from './panier/panier.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { ClientFormComponent } from './client-form/client-form.component';
+import { RouterModule } from '@angular/router';
+
+// import { CategorieClientService, ClientService } from 'src/app/core/services';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,8 @@ import { TransactionComponent } from './transaction/transaction.component';
     BreadcrumpComponent,
     PanierComponent,
     TransactionComponent,
+    ClientFormComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,8 @@ import { TransactionComponent } from './transaction/transaction.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
+
     CommonModule,
   ],
   providers: [],
