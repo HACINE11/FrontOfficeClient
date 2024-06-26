@@ -13,6 +13,7 @@ import { CategorieProduit } from '../model/categorie.model';
 export class ProduitDetailsComponent {
   produit!: Produit;
   quantite!: number;
+  idClient = 2;
   id!: number;
   arrayIdProduit: number[] = [];
   arrayIdClient: number[] = [];
@@ -40,16 +41,16 @@ export class ProduitDetailsComponent {
   addToCart(): void {
     this.cs
       .addProduct({
-        idClient: 2,
+        idClient: this.idClient,
         idProduit: this.id,
         quantity: this.quantite,
       })
       .subscribe({
         next: (data) => {
           console.log(data);
+          this.router.navigate(['panier']);
         },
         error: (e) => alert(e.message),
       });
-    this.router.navigate(['home']);
   }
 }

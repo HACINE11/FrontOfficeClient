@@ -84,4 +84,13 @@ export class PanierComponent implements OnInit {
       error: (e) => alert(e.message),
     });
   }
+  deletePanier() {
+    this.cartService.deletePanier(this.idClient).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.router.navigate(['home']);
+      },
+      error: (e) => alert(e.message),
+    });
+  }
 }

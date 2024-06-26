@@ -32,7 +32,7 @@
             </tr>
             <tr>
               <td colspan="5"></td>
-              <td><button  class="btn btn-danger">Empty Cart</button></td>
+              <td><button  class="btn btn-danger" (click)="deletePanier()">Empty Cart</button></td>
               <td><strong>Grand Total : ${{cart.totalAmount}}</strong></td>
               <td><button  class="btn btn-success" (click)="confirmPurchase()">Place Order</button></td>
             </tr>

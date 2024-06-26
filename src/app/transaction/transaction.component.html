@@ -4,17 +4,19 @@
       <thead>
         <tr>
           <th>Transaction ID</th>
+          <th>Producy name</th>
           <th>Date d'achat</th>
-          <th>Quantity/th>
-          <th>Statut</th>
+          <th>Quantity</th>
+          <th>Price</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let transaction of cart.items">
           <td>{{ transaction._id }}</td>
+          <td>{{transaction.product.nomProduit}}</td>
           <td>{{ transaction.purchaseDate }}</td>
           <td>{{ transaction.quantity| currency }}</td>
-          <td>{{ transaction.status }}</td>
+          <td>{{ transaction.product.prix }}</td>
         </tr>
         <tr>
             <td colspan="2"></td>
