@@ -18,6 +18,7 @@ export class ClientFormComponent implements OnInit {
   client!: Client;
   listCatClient!: Categorieclient[];
   statuslist = ['inactif'];
+  niveauSatisfaction = ['0']; 
   idc!: string;
   c!: Client;
 

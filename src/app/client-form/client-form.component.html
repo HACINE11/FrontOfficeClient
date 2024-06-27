@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajouter un nouveau client</title>
+  <title>Ajouter Devenir client</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f6f9f7;
+      background-color: #eaf1ea;
       color: #333;
     }
     .client-form-component {
@@ -74,7 +74,7 @@
 </head>
 <body>
   <div class="client-form-component">
-    <h1>Ajouter un nouveau client</h1>
+    <h1>Ajouter Devenir client</h1>
     <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
       <div>
         <input type="text" id="nom" formControlName="nom" placeholder="Nom">
@@ -134,11 +134,15 @@
         </div>
       </div>
       <div>
-        <input type="number" id="niveauSatisfaction" formControlName="niveauSatisfaction" placeholder="Niveau de Satisfaction">
+        <select class="ss" formControlName="niveauSatisfaction">
+          <option value=""></option> <!-- Option avec la valeur par défaut '0' -->
+          <option *ngFor="let i of [0]" [value]="i">{{i}}</option>
+        </select>
         <div *ngIf="clientForm.get('niveauSatisfaction')?.invalid && clientForm.get('niveauSatisfaction')?.touched">
           Le niveau de satisfaction doit être entre 0 et 5.
         </div>
       </div>
+      
       <div>
         <select class="ss" formControlName="statutCompte">
           <option *ngFor="let s of statuslist" [value]="s">{{s}}</option>

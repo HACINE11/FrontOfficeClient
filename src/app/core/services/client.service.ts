@@ -86,6 +86,9 @@ searchClients(criteria: any): Observable<Client[]> {
   // }
 // 
 
+checkMatriculeFiscale(matricule: string): Observable<boolean> {
+  return this.http.get<boolean>(`${this.apiUrlClient}/clients/check-matricule/${matricule}`);
+} 
   getClientById(id: string){
     return this.http.get<Client>(`${this.apiUrlClient}${id}`)
   }
