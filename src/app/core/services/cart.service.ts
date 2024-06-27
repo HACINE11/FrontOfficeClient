@@ -25,7 +25,12 @@ export class CartService {
     return this.http.get<Carte>(this.urlApi + 'get-cart/' + idClient);
   }
   updatePanier(body: { idClient: number; idProduit: number }) {
-    return this.http.put(this.urlApi + 'update-cart', body);
+    return this.http.put(this.urlApi + 'update-cart', body).pipe(
+      tap(() => {
+        // Émettre un événement de mise à jour du panier après l'ajout réussi
+        this.cartUpdateSubject.next();
+      })
+    );
   }
   getTransaction(idClient: number) {
     return this.http.get<Carte>(this.urlApi + 'get-orders/' + idClient);
@@ -34,6 +39,11 @@ export class CartService {
     return this.http.put(this.urlApi + 'confirm-purchase', body);
   }
   deletePanier(idClient: number) {
-    return this.http.delete(this.urlApi + 'delete-cart/' + idClient);
+    return this.http.delete(this.urlApi + 'delete-cart/' + idClient).pipe(
+      tap(() => {
+        // Émettre un événement de mise à jour du panier après l'ajout réussi
+        this.cartUpdateSubject.next();
+      })
+    );
   }
 }

@@ -93,4 +93,12 @@ export class PanierComponent implements OnInit {
       error: (e) => alert(e.message),
     });
   }
+
+  onQuantityChange(idProduit: number, newQuantity: number) {
+    const item = this.cart.items.find((item) => item.product._id === idProduit);
+    if (item) {
+      item.quantity = newQuantity;
+      this.calculateTotal();
+    }
+  }
 }

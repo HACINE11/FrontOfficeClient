@@ -23,7 +23,7 @@
               <td style="width: 25%;">{{ item.descriptionProduit }}</td>
               <td style="width: 12%;">{{ item.prix }}</td>
               <td>
-                <input type="number" [(ngModel)]="cart.items[i].quantity">
+                <input type="number" [(ngModel)]="cart.items[i].quantity" (input)="onQuantityChange(cart.items[i].product._id,cart.items[i].quantity )">
               </td>
               <td> {{ item.prix * cart.items[i].quantity }}</td>
               <td>
