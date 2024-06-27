@@ -63,7 +63,7 @@ export class ClientFormComponent implements OnInit {
 
     this.ccs.getcategorieclients().subscribe({
       next: (categories) => {
-        this.listCatClient = categories.filter(cat => cat.libelleCatCl === 'avenir client');
+        this.listCatClient = categories.filter(cat => cat.libelleCatCl === 'Devenir client');
       },
       error: (error) => {
         alert('Erreur lors de la récupération des catégories : ' + error.message);
@@ -85,10 +85,10 @@ export class ClientFormComponent implements OnInit {
       } else {
         this.clientService.addClient(this.clientForm.value).subscribe({
           next: () => {
-            alert('Client ajouté avec succès');
+            alert('Devenir client ajouté avec succès');
           },
           error: (error) => {
-            console.error('Erreur lors de l\'ajout du client', error);
+            console.error('Erreur lors de l\'ajout du Devenir client', error);
           }
         });
       }
