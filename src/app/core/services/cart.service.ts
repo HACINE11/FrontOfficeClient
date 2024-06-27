@@ -36,7 +36,12 @@ export class CartService {
     return this.http.get<Carte>(this.urlApi + 'get-orders/' + idClient);
   }
   confirmPurchase(body: { carte: Carte }) {
-    return this.http.put(this.urlApi + 'confirm-purchase', body);
+    return this.http.put(this.urlApi + 'confirm-purchase', body).pipe(
+      tap(() => {
+        // Émettre un événement de mise à jour du panier après l'ajout réussi
+        this.cartUpdateSubject.next();
+      })
+    );
   }
   deletePanier(idClient: number) {
     return this.http.delete(this.urlApi + 'delete-cart/' + idClient).pipe(
