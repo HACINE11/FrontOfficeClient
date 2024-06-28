@@ -51,6 +51,14 @@ export class ReclamationService {
       return this.http.delete<void>(this.apiUrlReclamations + id);
     }
 
+    onSatGreen(id: string, obj: object){
+      return this.http.patch<void>(this.apiUrlReclamations + id, obj);
+    }
+
+    onSatRed(id: string, obj: object){
+      return this.http.patch<void>(this.apiUrlReclamations + id, obj);
+    }
+
 
 
     //CRUD categorieReclamation:
