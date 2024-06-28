@@ -10,6 +10,8 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import { ManagementCategoriesComponent } from './management-categories/management-categories.component';
 import { PanierComponent } from './panier/panier.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { ListReclamationComponent } from './list-reclamation/list-reclamation.component';
+import { FormReclamationComponent } from './form-reclamation/form-reclamation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,6 +30,16 @@ const routes: Routes = [
   { path: 'add-categorie', component: AddCategorieComponent },
   { path: 'panier', component: PanierComponent },
   { path: 'transaction', component: TransactionComponent },
+  
+  {path:'listRec',
+    component: ListReclamationComponent,
+    },
+   {path:'newRec',
+    component: FormReclamationComponent,
+   },
+   {path:'edit/:id',
+    component: FormReclamationComponent,
+    },
   {
     path: 'management-categorie',
     children: [

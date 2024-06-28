@@ -20,6 +20,10 @@ import { BreadcrumpComponent } from './breadcrump/breadcrump.component';
 import { CommonModule } from '@angular/common';
 import { PanierComponent } from './panier/panier.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { FormReclamationComponent } from './form-reclamation/form-reclamation.component';
+import { ListReclamationComponent } from './list-reclamation/list-reclamation.component';
+import { ModalComponent } from './modal/modal.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { TransactionComponent } from './transaction/transaction.component';
     BreadcrumpComponent,
     PanierComponent,
     TransactionComponent,
+    FormReclamationComponent,
+    ListReclamationComponent,
+    ModalComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
