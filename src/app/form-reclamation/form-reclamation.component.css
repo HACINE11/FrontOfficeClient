@@ -1,0 +1,23 @@
+
+/* Add styles for the image preview */
+.img-thumbnail {
+    width: 200px; /* Adjust the width as needed */
+    height: auto; /* Maintain the aspect ratio */
+    border: 1px solid #ddd; /* Add a border */
+    padding: 4px; /* Add some padding */
+    border-radius: 4px; /* Rounded corners */
+    display: block; /* Ensure the image is displayed as a block element */
+    margin-top: 10px; /* Add some margin at the top */
+  }
+  
+
+  .green-border {
+    border: 2px solid rgb(58, 207, 58);
+    padding: 10px; /* Optional: Adds some space between the text and the border */
+    border-radius: 5px; /* Optional: Adds rounded corners */
+  }
+
+  .container {
+    width: 950px;
+  }  
+  

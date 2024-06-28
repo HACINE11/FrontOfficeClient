@@ -1,0 +1,23 @@
+
+.align-items-center {
+    display: flex;
+    align-items: center;
+}
+
+h3 {
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.clickable-row {
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .clickable-row:hover {
+    background-color: #cec7c7;
+  }
+
+.container {
+  width: 950px;
+}  

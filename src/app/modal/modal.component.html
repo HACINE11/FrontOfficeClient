@@ -1,0 +1,18 @@
+<div class="modal">
+    <div class="modal-content">
+      <span class="close-button" (click)="close()">&times;</span>
+      <h2>Modal Title</h2>
+      <p>This is a simple modal popup.</p>
+      <div class="smiley-container">
+        <div class="smiley" (click)="onSatisfied()">
+          <img src="assets/images/satisfied.png" alt="Satisfied" style="width: 100px; height: 100px;">
+          <br><button (click)="onSatisfied()">Satisfied</button>
+        </div>
+        <div class="smiley" (click)="onUnsatisfied()">
+          <img src="assets/images/unsatisfied.png" alt="Unsatisfied" style="width: 100px; height: 100px;">
+          <br><button (click)="onUnsatisfied()">Unsatisfied</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
