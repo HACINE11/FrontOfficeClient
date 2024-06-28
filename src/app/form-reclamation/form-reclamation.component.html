@@ -1,65 +1,52 @@
-
 <div class="container">
     <h4 class="mt-5 mb-3">{{ titlePage }}</h4>
-    
     <br>
     <h4 style="color: rgb(58, 207, 58);">{{ messageNotification }} </h4>
     <h4 class="mt-5 mb-3 {{green}}">{{ notesReclamation }}</h4><br>
-    
-    
-    <button *ngIf="buttonResolved" (click)="openModal()" class="btn btn-success">take survey</button>
+    <button *ngIf="buttonResolved" (click)="openModal()" class="btn btn-success" [disabled]="disableForm">take survey</button>
     <br><br>
     <form [formGroup]="reclamationForm" (ngSubmit)="onSubmit()">
-        
-    <div class="container">
-            <div class="form-group">
-                <label for="title" class="control-label">Title</label>
-                <input type="text" class="form-control" id="title" placeholder="Enter title" formControlName="title">
-            </div>
-            <div class="form-group">
-                <label for="priority" class="control-label">Priority</label>
-                <select class="form-control" id="priority" formControlName="priority">
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="priority" class="control-label">Category</label>
-                <select class="form-control" id="priority" formControlName="category" (change)="onResidenceChange($event)">
-                    <option *ngFor="let categorie of listCategorie" [value]="categorie._id">{{ categorie.libelleCategorie }}</option>
-                </select><br>
-                <small class="text-info" *ngIf="selectedDescription">
-                    {{ selectedDescription }}
-                </small>
-                <small class="text-danger" *ngIf="">
-                    Guest Name is required.
-                </small>
-            </div>
-            <div class="form-group">
-                <label for="description" class="control-label description-label">Description</label>
-                <textarea class="form-control" id="description" rows="5" placeholder="Enter a detailed description" formControlName="description"></textarea>
-            </div>
-    
-            <div class="form-group">
-                <label for="image" class="control-label">Upload Image</label>
-                <input type="file" class="form-control" id="image" (change)="onFileChange($event)" formControlName="image">
-            </div>
-    
-                  <!-- New div for image preview -->
-          <div *ngIf="imagePreviewUrl" class="form-group">
-            <label class="control-label">Image Preview</label>
-            <div class="image-preview-container">
-              <img [src]="imagePreviewUrl" alt="Image Preview" class="img-thumbnail">
-            </div>
+      <div class="container">
+        <div class="form-group">
+          <label for="title" class="control-label">Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter title" formControlName="title" [disabled]="disableForm">
+        </div>
+        <div class="form-group">
+          <label for="priority" class="control-label">Priority</label>
+          <select class="form-control" id="priority" formControlName="priority" [disabled]="disableForm">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="priority" class="control-label">Category</label>
+          <select class="form-control" id="priority" formControlName="category" (change)="onResidenceChange($event)" [disabled]="disableForm">
+            <option *ngFor="let categorie of listCategorie" [value]="categorie._id">{{ categorie.libelleCategorie }}</option>
+          </select><br>
+          <small class="text-info" *ngIf="selectedDescription">
+            {{ selectedDescription }}
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="description" class="control-label description-label">Description</label>
+          <textarea class="form-control" id="description" rows="5" placeholder="Enter a detailed description" formControlName="description" [disabled]="disableForm"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="image" class="control-label">Upload Image</label>
+          <input type="file" class="form-control" id="image" (change)="onFileChange($event)" formControlName="image" [disabled]="disableForm">
+        </div>
+        <!-- New div for image preview -->
+        <div *ngIf="imagePreviewUrl" class="form-group">
+          <label class="control-label">Image Preview</label>
+          <div class="image-preview-container">
+            <img [src]="imagePreviewUrl" alt="Image Preview" class="img-thumbnail">
           </div>
         </div>
-    
-        <button class="btn btn-primary" type="submit" [disabled]="reclamationForm.invalid">Submit</button>
-        <app-modal *ngIf="showModal" (closeModal)="closeModal()"></app-modal>
-        <br><br>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="reclamationForm.invalid || disableForm">Submit</button>
+      <app-modal *ngIf="showModal" (closeModal)="closeModal()"></app-modal>
+      <br><br>
     </form>
-    
-    
-    </div>
-    
+  </div>
+  

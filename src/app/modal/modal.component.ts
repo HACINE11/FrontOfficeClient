@@ -15,7 +15,8 @@ export class ModalComponent {
 
   constructor(
     private reclamationService:     ReclamationService,
-    private activatedRoute:         ActivatedRoute
+    private activatedRoute:         ActivatedRoute,
+    private router:                 Router
   ){}
 
 
@@ -38,6 +39,7 @@ export class ModalComponent {
       this.reclamationService.onSatGreen(id, obj).subscribe(
         response => {
           console.log('Success', response);
+          this.router.navigate(['/listRec']);
         },
         error => {
           console.log('Error', error);
@@ -61,6 +63,7 @@ export class ModalComponent {
       this.reclamationService.onSatRed(id, obj).subscribe(
         response => {
           console.log('Success', response);
+          this.router.navigate(['/listRec']);
         },
         error => {
           console.log('Error', error);
