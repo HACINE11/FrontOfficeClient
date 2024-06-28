@@ -11,7 +11,7 @@ import { CategorieReclamation } from '../models/categorie-reclamation';
 @Component({
   selector: 'app-form-reclamation',
   templateUrl: './form-reclamation.component.html',
-  styleUrls: ['./form-reclamation.component.scss']
+  styleUrls: ['./form-reclamation.component.css']
 })
 export class FormReclamationComponent implements OnInit{
   showModal = false;

@@ -1,1 +1,16 @@
-<p>notification works!</p>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+rel="stylesheet">
+
+<button type="button" class="icon-button" (click)="toggleNotifications()">
+    <span class="material-icons">notifications</span>
+    <span class="{{ redNotification }}">{{ numNotifications }}</span>
+  </button>
+  
+  <div *ngIf="showNotifications" class="notification-dropdown" >
+    <div *ngFor="let reclamation of listReclamations"  (click)="navigateToReclamation(reclamation._id)">
+      <div class="notification-item">
+        <p>{{ reclamation.title }}</p>
+        <p>{{ reclamation.notification }}</p>
+      </div>
+    </div>
+  </div>
