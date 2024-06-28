@@ -23,7 +23,7 @@
               <td style="width: 25%;">{{ item.descriptionProduit }}</td>
               <td style="width: 12%;">{{ item.prix }}</td>
               <td>
-                <input type="number" [(ngModel)]="cart.items[i].quantity"  max="cart.items[i].quantite">
+                <input type="number" [(ngModel)]="cart.items[i].quantity" (input)="onQuantityChange(cart.items[i].product._id,cart.items[i].quantity )">
               </td>
               <td> {{ item.prix * cart.items[i].quantity }}</td>
               <td>
@@ -32,9 +32,9 @@
             </tr>
             <tr>
               <td colspan="5"></td>
-              <td><button  class="btn btn-danger">Empty Cart</button></td>
+              <td><button  class="btn btn-danger" (click)="deletePanier()">Empty Cart</button></td>
               <td><strong>Grand Total : ${{cart.totalAmount}}</strong></td>
-              <td><button  class="btn btn-success">Place Order</button></td>
+              <td><button  class="btn btn-success" (click)="confirmPurchase()">Place Order</button></td>
             </tr>
           </tbody>
         </table>

@@ -70,4 +70,35 @@ export class PanierComponent implements OnInit {
       error: (e) => alert(e.message),
     });
   }
+  confirmPurchase() {
+    console.log(this.cart);
+    this.cartService.confirmPurchase({ carte: this.cart }).subscribe({
+      next: (data: any) => {
+        if (data.erreur) {
+          alert(data.erreur);
+        } else {
+          alert(data.message);
+        }
+        this.router.navigate(['transaction']);
+      },
+      error: (e) => alert(e.message),
+    });
+  }
+  deletePanier() {
+    this.cartService.deletePanier(this.idClient).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.router.navigate(['home']);
+      },
+      error: (e) => alert(e.message),
+    });
+  }
+
+  onQuantityChange(idProduit: number, newQuantity: number) {
+    const item = this.cart.items.find((item) => item.product._id === idProduit);
+    if (item) {
+      item.quantity = newQuantity;
+      this.calculateTotal();
+    }
+  }
 }
