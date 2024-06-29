@@ -128,9 +128,7 @@ export class FormReclamationComponent implements OnInit {
       }
       formData.append('idCategorieReclamation', this.reclamationForm.get('category')?.value);
       formData.append('idClient', this.idClient);
-      formData.append('notes', "0");
-      formData.append('satisfaction', "0");
-      formData.append('notification', "0");
+
 
       let id = this.activatedRoute.snapshot.paramMap.get('id');
 
@@ -141,6 +139,11 @@ export class FormReclamationComponent implements OnInit {
           console.error('Error updating reclamation', error);
         });
       } else {
+
+        formData.append('notes', "");
+        formData.append('satisfaction', "0");
+        formData.append('notification', "0");
+        
         this.reclamationService.addReclamation(formData).subscribe(() => {
           this.router.navigate(['/listRec']);
         }, error => {
