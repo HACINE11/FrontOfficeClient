@@ -40,7 +40,7 @@ export class ReclamationService {
     }
 
     updateReclamation(reclamation: FormData, id: string){
-      return this.http.patch<void>(this.apiUrlReclamations + id, reclamation);
+      return this.http.put<void>(this.apiUrlReclamations + id, reclamation);
     }
 
     updateReclamationPatch(id: string, obj: object){

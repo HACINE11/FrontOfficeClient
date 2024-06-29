@@ -22,7 +22,7 @@ export class FormReclamationComponent implements OnInit {
   green!: string;
   buttonResolved!: boolean;
   disableForm: boolean = false;  // Flag to control the form's disabled state
-  imagePreviewUrl: string | null = null;
+  imagePreviewUrl!: string;
   titlePage: string = "";
   reclamation!: Reclamation;
   listCategorie: CategorieReclamation[] = [];
@@ -51,7 +51,7 @@ export class FormReclamationComponent implements OnInit {
     if (id) {
       this.titlePage = "Update your Reclamation";
       this.reclamationService.getReclamationByIdRec(id).subscribe((data: Reclamation) => {
-        if (data.notes && data.notes.trim() !== "0") {
+        if (data.notes && data.notes.trim() !== "") {
           this.messageNotification = "You have new modification on your Reclamation";
           this.notesReclamation = data.notes;
           this.green = "green-border";
@@ -67,7 +67,9 @@ export class FormReclamationComponent implements OnInit {
         }
 
         this.populateForm(data);
-        this.imagePreviewUrl = data.image;
+
+       this.imagePreviewUrl = data.image;
+       console.log("image ... ", this.imagePreviewUrl);
       });
     }
 
