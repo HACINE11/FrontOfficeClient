@@ -66,10 +66,9 @@ export class FormReclamationComponent implements OnInit {
           this.reclamationForm.disable();  // Disable all form controls
         }
 
-        this.populateForm(data);
-
+       this.populateForm(data);
        this.imagePreviewUrl = data.image;
-       console.log("image ... ", this.imagePreviewUrl);
+       
       });
     }
 
@@ -122,7 +121,7 @@ export class FormReclamationComponent implements OnInit {
       formData.append('title', this.reclamationForm.get('title')?.value);
       formData.append('description', this.reclamationForm.get('description')?.value);
       formData.append('priorite', this.reclamationForm.get('priority')?.value);
-      formData.append('statut_rec', "new");
+      
       if (this.imageFile) {
         formData.append('image', this.imageFile);
       }
@@ -139,11 +138,11 @@ export class FormReclamationComponent implements OnInit {
           console.error('Error updating reclamation', error);
         });
       } else {
-
+        formData.append('statut_rec', "new");
         formData.append('notes', "");
         formData.append('satisfaction', "0");
         formData.append('notification', "0");
-        
+
         this.reclamationService.addReclamation(formData).subscribe(() => {
           this.router.navigate(['/listRec']);
         }, error => {
