@@ -63,7 +63,7 @@ export class ClientFormComponent implements OnInit {
 
     this.ccs.getcategorieclients().subscribe({
       next: (categories) => {
-        this.listCatClient = categories.filter(cat => cat.libelleCatCl === 'Devenir client');
+        this.listCatClient = categories.filter(cat => cat.libelleCatCl === 'devenir client');
       },
       error: (error) => {
         alert('Erreur lors de la récupération des catégories : ' + error.message);
@@ -76,24 +76,27 @@ export class ClientFormComponent implements OnInit {
       if (this.idc) {
         this.clientService.updateClient(this.idc, this.clientForm.value).subscribe({
           next: () => {
-            alert('Client mis à jour avec succès');
+            this.successMessage = 'Client mis à jour avec succès';
+            this.errorMessage = null;
           },
           error: (error) => {
+            this.errorMessage = 'Erreur lors de la mise à jour du client: ' + error.message;
             console.error('Erreur lors de la mise à jour du client', error);
           }
         });
       } else {
         this.clientService.addClient(this.clientForm.value).subscribe({
           next: () => {
-            alert('Devenir client ajouté avec succès');
+            alert(' Devenir Client ajouté avec succès.');
+            this.errorMessage = null;
           },
           error: (error) => {
-            console.error('Erreur lors de l\'ajout du Devenir client', error);
+            alert('le matricule est unique.');
           }
         });
       }
     } else {
-      alert('Veuillez remplir tous les champs requis.');
+      this.errorMessage = 'Veuillez remplir tous les champs requis.';
     }
   }
 }
