@@ -5,6 +5,7 @@ import { Categorieclient } from 'src/app/model/categorieclient';
 import { Client } from 'src/app/model/client';
 import { ClientService } from 'src/app/core/services/client.service';
 import { CategorieClientService } from 'src/app/core/services/categorie-client.service';
+import { noNumbersValidator } from 'src/app/core/services/no-numbers.validator';
 
 @Component({
   selector: 'app-client-form',
@@ -29,8 +30,8 @@ export class ClientFormComponent implements OnInit {
     private ar: ActivatedRoute
   ) {
     this.clientForm = this.fb.group({
-      nom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-      prenom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      nom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100), noNumbersValidator]],
+      prenom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100), noNumbersValidator]],
       email: ['', [Validators.required, Validators.email]],
       addressePostal: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
       telPortable: ['', [Validators.required, Validators.pattern(/^\+\d{1,3}\d{4,14}(?:x\d+)?$/)]],

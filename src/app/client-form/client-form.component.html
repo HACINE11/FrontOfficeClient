@@ -84,13 +84,26 @@
         <div>
           <input type="text" id="nom" formControlName="nom" placeholder="Nom *">
           <div *ngIf="clientForm.get('nom')?.invalid && clientForm.get('nom')?.touched">
-            Le nom doit contenir entre 2 et 100 caractères.
+            Un nom valide est requis.
+            <div *ngIf="clientForm.get('nom')?.errors?.['minlength'] || clientForm.get('nom')?.errors?.['maxlength']">
+              Le nom doit contenir entre 2 et 100 caractères.
+            </div>
+            <div *ngIf="clientForm.get('nom')?.errors?.['hasNumber']">
+              Le nom ne doit pas contenir de chiffres.
+            </div>
           </div>
         </div>
         <div>
-          <input type="text" id="prenom" formControlName="prenom" placeholder="Prénom *">
+          <input type="text" id="prenom" formControlName="prenom" placeholder="Prenom *">
           <div *ngIf="clientForm.get('prenom')?.invalid && clientForm.get('prenom')?.touched">
-            Le prénom doit contenir entre 2 et 100 caractères.
+            Le prenom doit contenir entre 2 et 100 caractères  valide est requis.
+  
+            <div *ngIf="clientForm.get('prenom')?.errors?.['minlength'] || clientForm.get('prenom')?.errors?.['maxlength']">
+              Le prenom doit contenir entre 2 et 100 caractères.
+            </div>
+            <div *ngIf="clientForm.get('prenom')?.errors?.['hasNumber']">
+              Le prenom ne doit pas contenir de chiffres.
+            </div>
           </div>
         </div>
         <div>
