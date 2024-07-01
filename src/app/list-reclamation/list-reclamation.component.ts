@@ -31,8 +31,8 @@ constructor(
   private router: Router
 ) {}
 
-onRowClick(id: string): void {
-    this.router.navigate(['/edit', id]);
+onRowClick(id: string, title: string): void {
+    this.router.navigate(['/edit', id+"-"+title]);
 }
 
 deleteApartment(id: string){

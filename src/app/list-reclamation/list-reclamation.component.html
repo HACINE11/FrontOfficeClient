@@ -31,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="clickable-row" *ngFor="let listReclamation of listReclamations" (click)="onRowClick(listReclamation._id)">
+            <tr class="clickable-row" *ngFor="let listReclamation of listReclamations" (click)="onRowClick(listReclamation._id, listReclamation.title)">
                 <td><a [routerLink]="['/edit', listReclamation._id]">{{listReclamation.title}}</a></td>
                 <td>{{listReclamation.priorite}}</td>
                 <td>{{listReclamation.dateReclamation}}</td>
