@@ -14,8 +14,14 @@ export class NavbarComponent {
   idClient: number = 2; // Remplacez par l'identifiant réel du client
   products: Produit[] = []; //
   filtre: any[] = [];
+
+  tokenClient!: string | null;
+
   constructor(private router: Router, private cs: CartService) {}
   ngOnInit(): void {
+
+    this.tokenClient = localStorage.getItem("tokenClient");
+    
     this.countPanier();
     this.cs.cartUpdated$.subscribe(() => {
       this.countPanier();
@@ -45,6 +51,8 @@ export class NavbarComponent {
 
   logout(): void {
     // Implement your logout logic here
+    localStorage.removeItem("tokenClient");
     this.router.navigate(['/logout']);
+    window.location.reload();
   }
 }

@@ -24,7 +24,10 @@ export class LoginFormComponent{
       const loginData = this.loginForm.value;
       this.auth.logIn(loginData.email, loginData.motPasse).subscribe(
         response => {
-        console.log('Connexion réussie : ', response);
+        // console.log('Connexion réussie : ', response);
+        localStorage.setItem("tokenClient", response.token);
+        
+        
         this.router.navigate(['/home']);
         },
         error => {
@@ -36,7 +39,6 @@ export class LoginFormComponent{
       
         console.log('Formulaire non valide !!');
     }
-  
 }
 
 

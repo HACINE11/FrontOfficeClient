@@ -24,13 +24,13 @@
 
         
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/transaction">Transaction</a>
+        <li class="nav-item" *ngIf="tokenClient">
+          <a  class="nav-link" routerLink="/transaction">Transaction</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="tokenClient">
           <a class="nav-link" routerLink="/listRec">list reclamation</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="tokenClient">
           <a class="nav-link" routerLink="/newRec">add reclamation</a>
 
         </li>
