@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { Reclamation } from '../models/reclamation';
 import { CategorieReclamation } from '../models/categorie-reclamation';
 

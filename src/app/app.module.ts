@@ -24,6 +24,8 @@ import { FormReclamationComponent } from './form-reclamation/form-reclamation.co
 import { ListReclamationComponent } from './list-reclamation/list-reclamation.component';
 import { ModalComponent } from './modal/modal.component';
 import { NotificationComponent } from './notification/notification.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { NotificationComponent } from './notification/notification.component';
     ListReclamationComponent,
     ModalComponent,
     NotificationComponent,
+    LoginFormComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

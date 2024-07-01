@@ -12,7 +12,8 @@ import { PanierComponent } from './panier/panier.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { ListReclamationComponent } from './list-reclamation/list-reclamation.component';
 import { FormReclamationComponent } from './form-reclamation/form-reclamation.component';
-
+import { LoginFormComponent } from './login-form/login-form.component';
+import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
@@ -27,21 +28,17 @@ const routes: Routes = [
     ],
   },
 
+  { path: 'login-form',  component: LoginFormComponent },
+  { path: 'signup',  component: SignupComponent },
+
   { path: 'add-categorie', component: AddCategorieComponent },
   { path: 'panier', component: PanierComponent },
   { path: 'transaction', component: TransactionComponent },
   
-  {path:'listRec',
-    component: ListReclamationComponent,
-    },
-   {path:'newRec',
-    component: FormReclamationComponent,
-   },
-   {path:'edit/:id',
-    component: FormReclamationComponent,
-    },
-  {
-    path: 'management-categorie',
+  {path:'listRec', component: ListReclamationComponent,   },
+   {path:'newRec', component: FormReclamationComponent,   },
+   {path:'edit/:id', component: FormReclamationComponent, },
+  { path: 'management-categorie',
     children: [
       { path: '', component: ManagementCategoriesComponent },
       { path: 'update/:idCategorie', component: AddCategorieComponent },
