@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter Devenir client</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eaf1ea;
+      color: #333;
+    }
+    .client-form-component {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 30px;
+      color: #2e7d32;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 2px solid #81c784;
+      border-radius: 4px;
+    }
+    input:focus, select:focus {
+      border-color: #4caf50;
+      outline: none;
+    }
+    .btn-success {
+      padding: 10px;
+      color: white;
+      background-color: #4caf50;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-success:hover {
+      background-color: #388e3c;
+    }
+    .error-message {
+      color: #d32f2f;
+      margin-top: 10px;
+    }
+    .success-message {
+      color: #388e3c;
+      margin-top: 10px;
+    }
+    .ss {
+      appearance: none;
+      background-color: #ffffff;
+      border: 2px solid #81c784;
+      border-radius: 4px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .ss:focus {
+      border-color: #4caf50;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <h2 class="content-block">Bienvenue à Notre Site MLIHA</h2>
+  <div class="container">
+    <div class="image-container">
+      <img src="assets/Capture MLIHA.png" alt="E-MLIHA">
+    </div>
+    <div class="client-form-component">
+      <h1>Ajouter Devenir client</h1>
+      <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+        <div>
+          <input type="text" id="nom" formControlName="nom" placeholder="Nom *">
+          <div *ngIf="clientForm.get('nom')?.invalid && clientForm.get('nom')?.touched">
+            Un nom valide est requis.
+            <div *ngIf="clientForm.get('nom')?.errors?.['minlength'] || clientForm.get('nom')?.errors?.['maxlength']">
+              Le nom doit contenir entre 2 et 100 caractères.
+            </div>
+            <div *ngIf="clientForm.get('nom')?.errors?.['hasNumber']">
+              Le nom ne doit pas contenir de chiffres.
+            </div>
+          </div>
+        </div>
+        <div>
+          <input type="text" id="prenom" formControlName="prenom" placeholder="Prenom *">
+          <div *ngIf="clientForm.get('prenom')?.invalid && clientForm.get('prenom')?.touched">
+            Le prenom doit contenir entre 2 et 100 caractères  valide est requis.
+  
+            <div *ngIf="clientForm.get('prenom')?.errors?.['minlength'] || clientForm.get('prenom')?.errors?.['maxlength']">
+              Le prenom doit contenir entre 2 et 100 caractères.
+            </div>
+            <div *ngIf="clientForm.get('prenom')?.errors?.['hasNumber']">
+              Le prenom ne doit pas contenir de chiffres.
+            </div>
+          </div>
+        </div>
+        <div>
+          <input type="email" id="email" formControlName="email" placeholder="Email *">
+          <div *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched">
+            Un email valide est requis.
+          </div>
+        </div>
+        <div>
+          <input type="text" id="addressePostal" formControlName="addressePostal" placeholder="Adresse Postale *">
+          <div *ngIf="clientForm.get('addressePostal')?.invalid && clientForm.get('addressePostal')?.touched">
+            L'adresse postale doit contenir entre 5 et 200 caractères.
+          </div>
+        </div>
+        <div>
+          <input type="text" id="telPortable" formControlName="telPortable" placeholder="Téléphone Portable *">
+          <div *ngIf="clientForm.get('telPortable')?.invalid && clientForm.get('telPortable')?.touched">
+            Le téléphone portable doit être valide.
+          </div>
+        </div>
+        <div>
+          <input type="number" id="telFixe" formControlName="telFixe" placeholder="Téléphone Fixe">
+          <div *ngIf="clientForm.get('telFixe')?.invalid && clientForm.get('telFixe')?.touched">
+            Le téléphone fixe doit contenir 8 chiffres.
+          </div>
+        </div>
+        <div>
+          <input type="number" id="matriculeFiscale" formControlName="matriculeFiscale" placeholder="Matricule Fiscale *">
+          <div *ngIf="clientForm.get('matriculeFiscale')?.invalid && clientForm.get('matriculeFiscale')?.touched">
+            La matricule fiscale doit contenir exactement 8 chiffres.
+          </div>
+          <div *ngIf="clientForm.get('matriculeFiscale')?.hasError('matriculeExists') && clientForm.get('matriculeFiscale')?.touched">
+            Cette matricule fiscale est déjà utilisée.
+          </div>
+        </div>
+        <div>
+          <input id="dateInscription" type="date" formControlName="dateInscription" placeholder="Date d'inscription *">
+          <div *ngIf="clientForm.get('dateInscription')?.invalid && clientForm.get('dateInscription')?.touched">
+            La date d'inscription est requise.
+          </div>
+        </div>
+        <div>
+          <input type="number" id="chiffreAffaire" formControlName="chiffreAffaire" placeholder="Chiffre d'Affaire *">
+          <div *ngIf="clientForm.get('chiffreAffaire')?.invalid && clientForm.get('chiffreAffaire')?.touched">
+            Le chiffre d'affaire doit être au moins 0.
+          </div>
+        </div>
+        <div>
+          <select class="ss" formControlName="niveauSatisfaction">
+            <option value=""></option> <!-- Option avec la valeur par défaut '0' -->
+            <option *ngFor="let i of [0]" [value]="i">{{i}}</option>
+          </select>
+          <div *ngIf="clientForm.get('niveauSatisfaction')?.invalid && clientForm.get('niveauSatisfaction')?.touched">
+            Le niveau de satisfaction doit être entre 0 et 5.
+          </div>
+        </div>
+        <div>
+          <select class="ss" formControlName="statutCompte">
+            <option *ngFor="let s of statuslist" [value]="s">{{s}}</option>
+          </select>
+          <div *ngIf="clientForm.get('statutCompte')?.invalid && clientForm.get('statutCompte')?.touched">
+            Le statut du compte est requis.
+          </div>
+        </div>
+        <div>
+          <input type="text" id="region" formControlName="region" placeholder="Région *">
+          <div *ngIf="clientForm.get('region')?.invalid && clientForm.get('region')?.touched">
+            La région doit contenir entre 2 et 100 caractères.
+          </div>
+        </div>
+        <div>
+          <select class="ss" formControlName="categorieClientId">
+            <option *ngFor="let cat of listCatClient" [value]="cat._id">{{cat.libelleCatCl}}</option>
+          </select>
+          <div *ngIf="clientForm.get('categorieClientId')?.invalid && clientForm.get('categorieClientId')?.touched">
+            La catégorie de client est requise.
+          </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success">Envoyer</button>
+      </form>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    </div>
+  </div>
+</body>
+</html>

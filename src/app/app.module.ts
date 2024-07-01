@@ -24,6 +24,10 @@ import { FormReclamationComponent } from './form-reclamation/form-reclamation.co
 import { ListReclamationComponent } from './list-reclamation/list-reclamation.component';
 import { ModalComponent } from './modal/modal.component';
 import { NotificationComponent } from './notification/notification.component';
+import { ClientFormComponent } from './client-form/client-form.component';
+import { RouterModule } from '@angular/router';
+
+// import { CategorieClientService, ClientService } from 'src/app/core/services';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,8 @@ import { NotificationComponent } from './notification/notification.component';
     ListReclamationComponent,
     ModalComponent,
     NotificationComponent,
+    ClientFormComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,8 @@ import { NotificationComponent } from './notification/notification.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
+
     CommonModule,
   ],
   providers: [],

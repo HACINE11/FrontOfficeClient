@@ -12,6 +12,7 @@ import { PanierComponent } from './panier/panier.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { ListReclamationComponent } from './list-reclamation/list-reclamation.component';
 import { FormReclamationComponent } from './form-reclamation/form-reclamation.component';
+import { ClientFormComponent } from './client-form/client-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -40,6 +41,8 @@ const routes: Routes = [
    {path:'edit/:id',
     component: FormReclamationComponent,
     },
+  { path: 'Devenir client', component: ClientFormComponent },
+
   {
     path: 'management-categorie',
     children: [
