@@ -46,9 +46,13 @@ export class FormReclamationComponent implements OnInit {
 
     this.titlePage = "Request your Reclamation";
 
-    let id = this.activatedRoute.snapshot.paramMap.get('id');
+    let url = this.activatedRoute.snapshot.paramMap.get('id');
 
-    if (id) {
+    if (url) {
+
+      let index = url.indexOf('-');
+      let id = url.slice(0, index);
+
       this.titlePage = "Update your Reclamation";
       this.reclamationService.getReclamationByIdRec(id).subscribe((data: Reclamation) => {
         if (data.notes && data.notes.trim() !== "") {
