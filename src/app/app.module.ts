@@ -28,6 +28,8 @@ import { ClientFormComponent } from './client-form/client-form.component';
 import { RouterModule } from '@angular/router';
 
 // import { CategorieClientService, ClientService } from 'src/app/core/services';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { RouterModule } from '@angular/router';
     NotificationComponent,
     ClientFormComponent,
 
+    LoginFormComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

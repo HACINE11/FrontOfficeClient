@@ -1,0 +1,62 @@
+<div class="signup-container">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="nom">Nom:</label>
+            <input id="nom" formControlName="nom" type="text" />
+          </div>
+      
+          <div>
+            <label for="prenom">Prénom:</label>
+            <input id="prenom" formControlName="prenom" type="text" />
+          </div>
+          <div>
+            <label for="entreprise">Entreprise:</label>
+            <input id="entreprise" formControlName="entreprise" type="text" />
+          </div>
+          
+      <div>
+        <label for="matriculeFiscal">Matricule Fiscal:</label>
+        <input id="matriculeFiscal" formControlName="matriculeFiscal" type="text" />
+      </div>
+
+        
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+          <small *ngIf="signupForm.get('email')?.errors">Email est requis.</small>
+          <small *ngIf="signupForm.get('email')?.errors">Email non valide.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="password">Mot de passe:</label>
+        <input id="password" formControlName="motPasse" type="password" />
+        <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+          <small *ngIf="signupForm.get('password')?.errors">Mot de passe est requis.</small>
+          <small *ngIf="signupForm.get('password')?.errors">
+            Le mot de passe doit comporter au moins 6 caractères.
+          </small>
+        </div>
+      </div>
+  
+       
+  
+      <div>
+        <label for="address">Adresse:</label>
+        <input id="address" formControlName="address" type="text" />
+      </div>
+  
+      <div>
+        <label for="mobile">Mobile:</label>
+        <input id="mobile" formControlName="mobile" type="text" />
+      </div>
+  
+      <div>
+        <label for="role">Rôle:</label>
+        <input id="role" formControlName="role" type="text" />
+      </div>
+  
+      <button type="submit" [disabled]="signupForm.invalid">S'inscrire</button>
+    </form>
+  </div>
