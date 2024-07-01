@@ -8,3 +8,34 @@
     transform: scale(0.9); /* Ajustez cette valeur pour réduire la taille du badge */
   }
   
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-button {
+    margin-right: 20px;
+  }
+  
+  .profile-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .profile-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mat-menu-content {
+    min-width: 150px;
+  }
+  
+  .mat-menu-item {
+    display: flex;
+    align-items: center;
+  }
+  

@@ -18,6 +18,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+
 const materialComponent = [
   MatIconModule,
   MatCardModule,
@@ -34,7 +36,8 @@ const materialComponent = [
   MatSortModule,
   MatTableModule,
   MatBadgeModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatMenuModule
 ];
 @NgModule({
   declarations: [],

@@ -34,4 +34,17 @@ export class NavbarComponent {
       error: (e) => alert(e.message),
     });
   }
+
+  login(): void {
+    this.router.navigate(['/login-form']);
+  }
+
+  signup(): void {
+    this.router.navigate(['/signup']);
+  }
+
+  logout(): void {
+    // Implement your logout logic here
+    this.router.navigate(['/logout']);
+  }
 }

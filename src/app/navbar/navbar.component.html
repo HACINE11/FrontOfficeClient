@@ -39,13 +39,24 @@
         </li>
       </ul>
       
-<div class="d-flex ms-auto">
+<div class="d-flex ms-auto align-items-center">
   <app-notification></app-notification>
   <button mat-icon-button class="cart-button" (click)="nvaigateToPanier()">
     <mat-icon [matBadge]="filtre.length" matBadgePosition="below after" matBadgeOverlap="false">
       shopping_cart
     </mat-icon>
   </button>
+
+  <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+    <img src="assets/images/3135715.png" class="profile-button">
+  </button>
+  
+  <mat-menu #profileMenu="matMenu">
+    <button mat-menu-item (click)="login()">Login</button>
+    <button mat-menu-item (click)="signup()">Sign Up</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </mat-menu>
+
 </div>
 
     </div>
