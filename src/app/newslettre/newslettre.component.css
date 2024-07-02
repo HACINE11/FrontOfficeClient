@@ -1,0 +1,50 @@
+.newsletter-container {
+    border-top: 1px solid #ddd;
+    padding: 20px;
+    background-color: #fff;
+    color: #333;
+    border-bottom: 4px solid #f58220;
+    position: relative;
+}
+
+.envelope-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.1; /* Ajustez l'opacité selon votre préférence */
+    pointer-events: none; /* Permet de ne pas interférer avec les événements du formulaire */
+    z-index: -1; /* Placez l'image en arrière-plan */
+}
+
+.newsletter-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.newsletter-container p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.btn-success {
+    background-color: #28a745; /* Couleur verte pour le bouton */
+    color: #fff; /* Texte blanc */
+}
+
+.btn-success:hover {
+    background-color: #218838; /* Assombrissement au survol */
+}
+
+input[type=email].form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}

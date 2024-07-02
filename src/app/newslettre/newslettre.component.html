@@ -1,0 +1,11 @@
+<div class="newsletter-container text-center py-4" style="background-color: #fff; color: #333; border-bottom: 4px solid #f58220; position: relative;">
+    <img src="assets/images/newslettre.png" alt="Image d'enveloppe" class="envelope-background">
+    <h3>Inscrivez-vous à notre newsletter</h3>
+    <p>Recevez les dernières actualités et mises à jour directement dans votre boîte de réception.</p>
+    <form (submit)="subscribe()">
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Votre adresse e-mail" [(ngModel)]="email" name="email" required>
+        </div>
+        <button type="submit" class="btn btn-success">S'abonner</button>
+    </form>
+</div>

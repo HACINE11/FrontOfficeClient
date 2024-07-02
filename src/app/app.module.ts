@@ -30,6 +30,8 @@ import { RouterModule } from '@angular/router';
 // import { CategorieClientService, ClientService } from 'src/app/core/services';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SignupComponent } from './signup/signup.component';
+import { FootbarComponent } from './footbar/footbar.component';
+import { NewslettreComponent } from './newslettre/newslettre.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { SignupComponent } from './signup/signup.component';
 
     LoginFormComponent,
     SignupComponent,
+    FootbarComponent,
+    NewslettreComponent,
   ],
   imports: [
     BrowserModule,
