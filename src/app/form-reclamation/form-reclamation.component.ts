@@ -1,6 +1,6 @@
 // In your component
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ReclamationService } from '../services/reclamation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Reclamation } from '../models/reclamation';
@@ -37,11 +37,36 @@ export class FormReclamationComponent implements OnInit {
 
   ngOnInit(): void {
     this.reclamationForm = this.formBuilder.group({
-      title: [{ value: '', disabled: this.disableForm }, Validators.required],
-      description: [{ value: '', disabled: this.disableForm }, Validators.required],
-      priority: [{ value: '', disabled: this.disableForm }, Validators.required],
-      category: [{ value: '', disabled: this.disableForm }, Validators.required],
-      image: [{ value: '', disabled: this.disableForm }]
+      title: [
+        { value: '', disabled: this.disableForm },
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(50),
+          Validators.pattern(/^[a-zA-Z0-9 ]+$/)
+        ]
+      ],
+      description: [
+        { value: '', disabled: this.disableForm },
+        [
+          Validators.required,
+          Validators.minLength(20),
+          Validators.maxLength(1000),
+          this.noSpecialCharactersValidator
+        ]
+      ],
+      priority: [
+        { value: '', disabled: this.disableForm },
+        Validators.required
+      ],
+      category: [
+        { value: '', disabled: this.disableForm },
+        Validators.required
+      ],
+      image: [
+        { value: '', disabled: this.disableForm },
+        this.imageValidator
+      ]
     });
 
     this.titlePage = "Request your Reclamation";
@@ -49,7 +74,6 @@ export class FormReclamationComponent implements OnInit {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
 
     if (id) {
-
       this.titlePage = "Update your Reclamation";
       this.reclamationService.getReclamationByIdRec(id).subscribe((data: Reclamation) => {
         if (data.notes && data.notes.trim() !== "") {
@@ -69,7 +93,6 @@ export class FormReclamationComponent implements OnInit {
 
        this.populateForm(data);
        this.imagePreviewUrl = data.image;
-       
       });
     }
 
@@ -91,6 +114,7 @@ export class FormReclamationComponent implements OnInit {
   get description() { return this.reclamationForm.get('description'); }
   get priority() { return this.reclamationForm.get('priority'); }
   get category() { return this.reclamationForm.get('category'); }
+  get image() { return this.reclamationForm.get('image'); }
 
   populateForm(reclamation: Reclamation): void {
     if (this.title) this.title.setValue(reclamation.title);
@@ -107,12 +131,13 @@ export class FormReclamationComponent implements OnInit {
   }
 
   onFileChange(event: any): void {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
+    const file = event.target.files[0];
+    if (file) {
       this.imageFile = file;
       this.reclamationForm.patchValue({
         image: file
       });
+      this.reclamationForm.get('image')?.updateValueAndValidity(); // Trigger validation
     }
   }
 
@@ -122,13 +147,12 @@ export class FormReclamationComponent implements OnInit {
       formData.append('title', this.reclamationForm.get('title')?.value);
       formData.append('description', this.reclamationForm.get('description')?.value);
       formData.append('priorite', this.reclamationForm.get('priority')?.value);
-      
+
       if (this.imageFile) {
         formData.append('image', this.imageFile);
       }
       formData.append('idCategorieReclamation', this.reclamationForm.get('category')?.value);
       formData.append('idClient', this.idClient);
-
 
       let id = this.activatedRoute.snapshot.paramMap.get('id');
 
@@ -152,4 +176,30 @@ export class FormReclamationComponent implements OnInit {
       }
     }
   }
+
+  // Validator to check for special characters
+  noSpecialCharactersValidator(control: FormControl): { [key: string]: any } | null {
+    const regex = /^[a-zA-Z0-9 .,?!]+$/;
+    if (control.value && !regex.test(control.value)) {
+      return { invalidCharacters: true };
+    }
+    return null;
+  }
+
+  // Validator for image file
+  imageValidator(control: FormControl): { [key: string]: any } | null {
+    const allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    const file: File = control.value;
+  
+    if (file) {
+      if (!allowedFileTypes.includes(file.type)) {
+        return { invalidFileType: true };
+      }
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        return { fileTooLarge: true };
+      }
+    }
+    return null;
+  }
+  
 }
