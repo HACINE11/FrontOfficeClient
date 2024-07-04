@@ -6,7 +6,7 @@ import { Client } from 'src/app/model/client';
 import { ClientService } from 'src/app/core/services/client.service';
 import { CategorieClientService } from 'src/app/core/services/categorie-client.service';
 import { noNumbersValidator } from 'src/app/core/services/no-numbers.validator';
-
+// ************************
 @Component({
   selector: 'app-client-form',
   templateUrl: './client-form.component.html',
@@ -92,7 +92,7 @@ export class ClientFormComponent implements OnInit {
             this.errorMessage = null;
           },
           error: (error) => {
-            alert('le matricule est unique.');
+            alert('le email ou le matricule est unique.');
           }
         });
       }
