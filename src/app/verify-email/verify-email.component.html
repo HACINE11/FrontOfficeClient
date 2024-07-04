@@ -1,0 +1,19 @@
+<form #verifyForm="ngForm" (ngSubmit)="onsubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="formData.email" required email>
+      
+        Valid email is required.
+      </div>
+   
+  
+    <div class="form-group">
+      <label for="code">Verification Code</label>
+      <input type="text" class="form-control" id="code" name="code" [(ngModel)]="formData.code" required>
+      
+        Verification code is required.
+      </div>
+  
+  
+    <button type="submit" class="btn btn-primary" [disabled]="loading">Verify Account</button>
+  </form>
