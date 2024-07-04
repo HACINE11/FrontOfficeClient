@@ -32,6 +32,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { SignupComponent } from './signup/signup.component';
 import { FootbarComponent } from './footbar/footbar.component';
 import { NewslettreComponent } from './newslettre/newslettre.component';
+import { ChatComponent } from './services/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { NewslettreComponent } from './newslettre/newslettre.component';
     SignupComponent,
     FootbarComponent,
     NewslettreComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
