@@ -16,6 +16,7 @@ import { ClientFormComponent } from './client-form/client-form.component';
 
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SignupComponent } from './signup/signup.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
 
   { path: 'login-form',  component: LoginFormComponent },
   { path: 'signup',  component: SignupComponent },
+  { path: 'verify-email',  component: VerifyEmailComponent },
 
   { path: 'add-categorie', component: AddCategorieComponent },
   { path: 'panier', component: PanierComponent },

@@ -33,6 +33,7 @@ import { SignupComponent } from './signup/signup.component';
 import { FootbarComponent } from './footbar/footbar.component';
 import { NewslettreComponent } from './newslettre/newslettre.component';
 import { ChatComponent } from './services/chat/chat.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ChatComponent } from './services/chat/chat.component';
     FootbarComponent,
     NewslettreComponent,
     ChatComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,

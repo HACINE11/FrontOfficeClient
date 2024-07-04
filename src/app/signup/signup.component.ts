@@ -21,7 +21,7 @@ export class SignupComponent {
       motPasse: ['', [Validators.required, ]],
       address: [''],
       mobile: [''],
-      role: ['']
+      role: ['client']
     });
   }
 
@@ -31,7 +31,7 @@ export class SignupComponent {
       this.authService.signUp(signupData).subscribe(
         response => {
           console.log('Inscription réussie : ', response);
-          this.router.navigate(['/home']); // Redirigez vers /home après une inscription réussie
+          this.router.navigate(['/verify-email']); //  Redirigez vers /home après une inscription réussie
         },
         error => {
           console.error('Erreur d\'inscription : ', error);
