@@ -92,7 +92,7 @@ export class ClientFormComponent implements OnInit {
             this.errorMessage = null;
           },
           error: (error) => {
-            alert('le matricule est unique.');
+            alert('le email ou le matricule est unique.');
           }
         });
       }
