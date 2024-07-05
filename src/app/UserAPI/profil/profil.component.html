@@ -1,0 +1,31 @@
+<div class="profile-container">
+  <form (ngSubmit)="updateUser()">
+    <div>
+      <label for="nom">Nom:</label>
+      <input id="nom" [(ngModel)]="user.nom" name="nom" type="text" required />
+    </div>
+
+    <div>
+      <label for="prenom">Prénom:</label>
+      <input id="prenom" [(ngModel)]="user.prenom" name="prenom" type="text" required />
+    </div>
+
+    <div>
+      <label for="entreprise">Entreprise:</label>
+      <input id="entreprise" [(ngModel)]="user.entreprise" name="entreprise" type="text" />
+    </div>
+
+    <div>
+      <label for="address">Adresse:</label>
+      <input id="address" [(ngModel)]="user.address" name="address" type="text" />
+    </div>
+
+    <div>
+      <label for="mobile">Mobile:</label>
+      <input id="mobile" [(ngModel)]="user.mobile" name="mobile" type="text" />
+    </div>
+
+    <button type="submit" [disabled]="loading">Mettre à jour</button>
+  </form>
+</div>
+

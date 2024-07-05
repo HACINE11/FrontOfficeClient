@@ -67,4 +67,19 @@ export class AuthServiceService {
         })
       );
   }
+
+  getUserProfile(id: string): Observable<any> 
+    { 
+      return this.http.get<any>('http://localhost:9090/user/' + id).pipe(map(response => response),catchError(error => 
+        {console.error('Error fetching profile:', error);
+          throw error;
+        })    );  }
+
+
+updateUserProfile(id: string, data: Partial<User>): Observable<any> {
+          return this.http.put<void>(`http://localhost:9090/user/${id}`, data)
+          .pipe(map(response => response),
+          catchError(error => { console.error('Error updating profile:', error); throw error; }) );
+         } 
 }
+

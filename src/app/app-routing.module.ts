@@ -19,6 +19,7 @@ import { SignupComponent } from './UserAPI/signup/signup.component';
 import { VerifyEmailComponent } from './UserAPI/verify-email/verify-email.component';
 import { ForgetPasswordComponent } from './UserAPI/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './UserAPI/reset-password/reset-password.component';
+import { ProfilComponent } from './UserAPI/profil/profil.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'reset-password',  component: ResetPasswordComponent },
   { path: 'signup',  component: SignupComponent },
   { path: 'verify-email',  component: VerifyEmailComponent },
+  { path: 'profil',  component: ProfilComponent },
 
   { path: 'add-categorie', component: AddCategorieComponent },
   { path: 'panier', component: PanierComponent },

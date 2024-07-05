@@ -36,6 +36,9 @@ import { ChatComponent } from './services/chat/chat.component';
 import { VerifyEmailComponent } from './UserAPI/verify-email/verify-email.component';
 import { ForgetPasswordComponent } from './UserAPI/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './UserAPI/reset-password/reset-password.component';
+import { ProfilComponent } from './UserAPI/profil/profil.component';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,7 @@ import { ResetPasswordComponent } from './UserAPI/reset-password/reset-password.
     ModalComponent,
     NotificationComponent,
     ClientFormComponent,
-
+    ProfilComponent,
     LoginFormComponent,
     SignupComponent,
     FootbarComponent,
@@ -66,7 +69,8 @@ import { ResetPasswordComponent } from './UserAPI/reset-password/reset-password.
     ChatComponent,
     VerifyEmailComponent,
     ForgetPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -77,7 +81,7 @@ import { ResetPasswordComponent } from './UserAPI/reset-password/reset-password.
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-
+   
     CommonModule,
   ],
   providers: [],

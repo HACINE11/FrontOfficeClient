@@ -48,11 +48,14 @@ export class NavbarComponent {
   signup(): void {
     this.router.navigate(['/signup']);
   }
+  profil():void {
+    this.router.navigate(['/profil']);
+  }
+  
 
   logout(): void {
-    // Implement your logout logic here
-    localStorage.removeItem("tokenClient");
-    this.router.navigate(['/logout']);
-    window.location.reload();
+        localStorage.removeItem("tokenClient");
+        this.router.navigate(['/logout']);
+        window.location.reload();
   }
 }

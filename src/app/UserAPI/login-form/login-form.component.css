@@ -33,3 +33,14 @@
   button:disabled {
     background-color: #ccc;
   }
+    /* login-form.component.css */
+.forget-password-link {
+  display: block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forget-password-link:hover {
+  text-decoration: underline;
+}
