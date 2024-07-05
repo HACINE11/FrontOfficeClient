@@ -16,11 +16,6 @@ export class AuthServiceService {
 
   constructor(private router: Router, private http:HttpClient){}
 
-  
-
-
-
-
   logIn(email: string, motPasse: string): Observable<any> {
     return this.http.post<any>('http://localhost:9090/user/signin', { email, motPasse })
      
@@ -46,6 +41,29 @@ export class AuthServiceService {
         }),
         catchError(error => {
           return of({ isOk: false, message: "Failed to verify account" });
+        })
+      );
+  }
+
+  forgetPassword(email: string): Observable<any> {
+    return this.http.post<any>('http://localhost:9090/user/forgetpassword', { email })
+      .pipe(
+        map(response => {
+          return { isOk: true, message: 'Recovery email sent' };
+        }),
+        catchError(error => {
+          return of({ isOk: false, message: 'Failed to reset password' });
+        })
+      );
+  }
+  changePassword(token: string, newPassword: string): Observable<any> {
+    return this.http.post<any>('http://localhost:9090/user/resetpassword', { token, newPassword })
+      .pipe(
+        map(response => {
+          return { isOk: true, message: 'Password has been reset' };
+        }),
+        catchError(error => {
+          return of({ isOk: false, message: 'Error resetting password' });
         })
       );
   }

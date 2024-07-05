@@ -14,9 +14,11 @@ import { ListReclamationComponent } from './list-reclamation/list-reclamation.co
 import { FormReclamationComponent } from './form-reclamation/form-reclamation.component';
 import { ClientFormComponent } from './client-form/client-form.component';
 
-import { LoginFormComponent } from './login-form/login-form.component';
-import { SignupComponent } from './signup/signup.component';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { LoginFormComponent } from './UserAPI/login-form/login-form.component';
+import { SignupComponent } from './UserAPI/signup/signup.component';
+import { VerifyEmailComponent } from './UserAPI/verify-email/verify-email.component';
+import { ForgetPasswordComponent } from './UserAPI/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './UserAPI/reset-password/reset-password.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
@@ -32,6 +34,8 @@ const routes: Routes = [
   },
 
   { path: 'login-form',  component: LoginFormComponent },
+  { path: 'forget-password',  component: ForgetPasswordComponent },
+  { path: 'reset-password',  component: ResetPasswordComponent },
   { path: 'signup',  component: SignupComponent },
   { path: 'verify-email',  component: VerifyEmailComponent },
 
