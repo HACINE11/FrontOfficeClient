@@ -28,12 +28,14 @@ import { ClientFormComponent } from './client-form/client-form.component';
 import { RouterModule } from '@angular/router';
 
 // import { CategorieClientService, ClientService } from 'src/app/core/services';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { SignupComponent } from './signup/signup.component';
+import { LoginFormComponent } from './UserAPI/login-form/login-form.component';
+import { SignupComponent } from './UserAPI/signup/signup.component';
 import { FootbarComponent } from './footbar/footbar.component';
 import { NewslettreComponent } from './newslettre/newslettre.component';
 import { ChatComponent } from './services/chat/chat.component';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { VerifyEmailComponent } from './UserAPI/verify-email/verify-email.component';
+import { ForgetPasswordComponent } from './UserAPI/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './UserAPI/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     FootbarComponent,
     NewslettreComponent,
     ChatComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
