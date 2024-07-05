@@ -5,18 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ajouter Devenir client</title>
   <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
     body {
       font-family: Arial, sans-serif;
       background-color: #eaf1ea;
       color: #333;
     }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align items to the top */
+      padding: 20px;
+    }
     .client-form-component {
-      max-width: 600px;
-      margin: 50px auto;
+      flex: 1;
+      max-width: 350px;
       padding: 20px;
       background-color: #ffffff;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-right: 10px; /* Space between form and video */
+    }
+    .video-container {
+      flex: 0 0 800px; /* Fixed width for video and image containers */
+    }
+    .image-container {
+      flex: 0 0 400px; /* Fixed width for video and image containers */
+    }
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+     .responsive-image {
+      width: 100%;
+      height: auto;
+      display: block;
     }
     h1 {
       font-size: 30px;
@@ -73,13 +101,12 @@
   </style>
 </head>
 <body>
-  <h2 class="content-block">Bienvenue à Notre Site MLIHA</h2>
+  <h1 class="text-center mb-4" style="color: rgb(22, 190, 22);">Bienvenue à Notre Site MLIHA</h1>
+
+  <!-- <h2 class="content-block">Bienvenue à Notre Site MLIHA</h2> -->
   <div class="container">
-    <div class="image-container">
-      <img src="assets/Capture MLIHA.png" alt="E-MLIHA">
-    </div>
     <div class="client-form-component">
-      <h1>Ajouter Devenir client</h1>
+      <h1>Devenir client</h1>
       <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
         <div>
           <input type="text" id="nom" formControlName="nom" placeholder="Nom *">
@@ -96,8 +123,7 @@
         <div>
           <input type="text" id="prenom" formControlName="prenom" placeholder="Prenom *">
           <div *ngIf="clientForm.get('prenom')?.invalid && clientForm.get('prenom')?.touched">
-            Le prenom doit contenir entre 2 et 100 caractères  valide est requis.
-  
+            Le prenom doit contenir entre 2 et 100 caractères valide est requis.
             <div *ngIf="clientForm.get('prenom')?.errors?.['minlength'] || clientForm.get('prenom')?.errors?.['maxlength']">
               Le prenom doit contenir entre 2 et 100 caractères.
             </div>
@@ -153,7 +179,7 @@
         </div>
         <div>
           <select class="ss" formControlName="niveauSatisfaction">
-            <option value=""></option> <!-- Option avec la valeur par défaut '0' -->
+            <option value=""></option>
             <option *ngFor="let i of [0]" [value]="i">{{i}}</option>
           </select>
           <div *ngIf="clientForm.get('niveauSatisfaction')?.invalid && clientForm.get('niveauSatisfaction')?.touched">
@@ -182,12 +208,23 @@
             La catégorie de client est requise.
           </div>
         </div>
-        <br>
-        <button type="submit" class="btn btn-success">Envoyer</button>
+        <div *ngIf="errorMessage" class="error-message">{{errorMessage}}</div>
+        <div *ngIf="successMessage" class="success-message">{{successMessage}}</div>
+        <button type="submit" class="btn-success">Ajouter</button>
       </form>
-      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
     </div>
+    <div class="video-container">
+      <video autoplay controls>
+        <source src="assets/video-mliha.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture de vidéos.
+      </video>
+      <img class="responsive-image" src="assets/Capture MLIHA.png" alt="E-MLIHA">
+
+    </div>
+    <!-- <div class="image-container"> -->
+    <!-- </div> -->
   </div>
+
 </body>
+
 </html>

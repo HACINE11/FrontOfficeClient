@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'add-categorie', component: AddCategorieComponent },
   { path: 'panier', component: PanierComponent },
   { path: 'transaction', component: TransactionComponent },
-  { path: 'Ajouter Devenir client', component: ClientFormComponent },
+  { path: 'Devenir client', component: ClientFormComponent },
 
   {
     path: 'management-categorie',
