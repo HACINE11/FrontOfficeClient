@@ -39,6 +39,7 @@ import { ResetPasswordComponent } from './UserAPI/reset-password/reset-password.
 import { ProfilComponent } from './UserAPI/profil/profil.component';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     VerifyEmailComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
+    AccountComponent,
     
   ],
   imports: [
@@ -81,7 +83,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-   
+    MatSnackBarModule,
     CommonModule,
   ],
   providers: [],

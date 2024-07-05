@@ -20,8 +20,11 @@ import { VerifyEmailComponent } from './UserAPI/verify-email/verify-email.compon
 import { ForgetPasswordComponent } from './UserAPI/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './UserAPI/reset-password/reset-password.component';
 import { ProfilComponent } from './UserAPI/profil/profil.component';
-const routes: Routes = [
+import { AccountComponent } from './account/account.component';
+
+const routes: Routes = [  
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
   {
     path: 'home',
     children: [
@@ -36,10 +39,10 @@ const routes: Routes = [
 
   { path: 'login-form',  component: LoginFormComponent },
   { path: 'forget-password',  component: ForgetPasswordComponent },
-  { path: 'reset-password',  component: ResetPasswordComponent },
+  { path: 'reset-password/:id',  component: ResetPasswordComponent },
   { path: 'signup',  component: SignupComponent },
   { path: 'verify-email',  component: VerifyEmailComponent },
-  { path: 'profil',  component: ProfilComponent },
+
 
   { path: 'add-categorie', component: AddCategorieComponent },
   { path: 'panier', component: PanierComponent },
@@ -65,6 +68,8 @@ const routes: Routes = [
       { path: ':idCategorie/:idProduit', component: AddProductComponent },
     ],
   },
+  {path: 'accountShow',  component: AccountComponent},
+
   { path: '**', component: NotfoundComponent },
 ];
 

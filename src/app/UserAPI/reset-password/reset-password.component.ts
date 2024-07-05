@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
+
   loading = false;
   resetPasswordForm: FormGroup;
   recoveryCode: string | null = null;
@@ -29,7 +30,8 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.recoveryCode = this.route.snapshot.paramMap.get('token');
+    this.recoveryCode = this.route.snapshot.paramMap.get('id');
+    console.log("id : ", this.recoveryCode);
   }
 
   passwordMatchValidator(form: FormGroup) {

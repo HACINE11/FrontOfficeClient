@@ -46,7 +46,7 @@ export class AuthServiceService {
   }
 
   forgetPassword(email: string): Observable<any> {
-    return this.http.post<any>('http://localhost:9090/user/forgetpassword', { email })
+    return this.http.post<any>('http://localhost:9090/user/forgetPasswordClient', { email })
       .pipe(
         map(response => {
           return { isOk: true, message: 'Recovery email sent' };
@@ -63,6 +63,7 @@ export class AuthServiceService {
           return { isOk: true, message: 'Password has been reset' };
         }),
         catchError(error => {
+          console.log("error", error);
           return of({ isOk: false, message: 'Error resetting password' });
         })
       );

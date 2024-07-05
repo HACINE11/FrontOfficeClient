@@ -29,7 +29,7 @@ export class ProfilComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('tokenClient');
 
     if (token) {
       try {
@@ -96,7 +96,7 @@ export class ProfilComponent implements OnInit {
     }
   
     ngOnInit(): void {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('tokenClient');
   
       if (token) {
         try {

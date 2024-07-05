@@ -4,6 +4,8 @@ import { CartService } from '../core/services/cart.service';
 import { Carte } from '../model/carte.model';
 import { Produit } from '../model/produit.model';
 
+import { jwtDecode } from 'jwt-decode';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -15,12 +17,21 @@ export class NavbarComponent {
   products: Produit[] = []; //
   filtre: any[] = [];
 
+  nameClient: string = "Default name";
+
   tokenClient!: string | null;
 
   constructor(private router: Router, private cs: CartService) {}
   ngOnInit(): void {
 
     this.tokenClient = localStorage.getItem("tokenClient");
+    
+    const token: string | null = localStorage.getItem('tokenClient');
+    
+    if(token){
+      const decoded: any = jwtDecode(token);
+      this.nameClient = decoded.email;
+    }
     
     this.countPanier();
     this.cs.cartUpdated$.subscribe(() => {
@@ -49,13 +60,13 @@ export class NavbarComponent {
     this.router.navigate(['/signup']);
   }
   profil():void {
-    this.router.navigate(['/profil']);
+    this.router.navigate(['/accountShow']);
   }
   
 
   logout(): void {
         localStorage.removeItem("tokenClient");
-        this.router.navigate(['/logout']);
-        window.location.reload();
+        this.router.navigate(['/home']);
+        // window.location.reload();
   }
 }

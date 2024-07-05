@@ -50,10 +50,11 @@
   <button mat-icon-button [matMenuTriggerFor]="profileMenu">
     <img src="assets/images/3135715.png" class="profile-button">
   </button>
+  <div>{{ nameClient }}</div>
   
   <mat-menu #profileMenu="matMenu">
     <button mat-menu-item (click)="login()">LOGIN</button>
-    <button mat-menu-item (click)="logout()">PROFIL</button>
+    <button mat-menu-item (click)="profil()">PROFIL</button>
     <button mat-menu-item (click)="signup()">Sign Up</button>
     <button mat-menu-item (click)="logout()">LOGOUT</button>
   </mat-menu>
