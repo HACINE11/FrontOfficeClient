@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChatService } from '../services/chat.service';
 
 
 @Component({
@@ -15,7 +14,6 @@ export class LoginFormComponent{
 
   loginForm: FormGroup;
   constructor(private fb: FormBuilder,private router:Router, 
-    private chatService: ChatService,
     private auth:AuthServiceService) {
 
     this.loginForm = this.fb.group({
