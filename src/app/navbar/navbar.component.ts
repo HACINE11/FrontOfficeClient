@@ -42,14 +42,16 @@ export class NavbarComponent {
     this.router.navigate(['/panier']);
   }
   countPanier() {
-    this.cs.getpanier(this.idClient).subscribe({
-      next: (data: Carte) => {
-        this.cart = data;
-        this.filtre = data.items;
-        console.log(this.filtre);
-      },
-      error: (e) => alert(e.message),
-    });
+    if (this.idClient) {
+      this.cs.getpanier(this.idClient).subscribe({
+        next: (data: Carte) => {
+          this.cart = data;
+          this.filtre = data.items;
+          console.log(this.filtre);
+        },
+        error: (e) => alert(e.message),
+      });
+    }
   }
 
   login(): void {

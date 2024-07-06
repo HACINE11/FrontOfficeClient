@@ -40,12 +40,16 @@
       </ul>
       
 <div class="d-flex ms-auto align-items-center">
-  <app-notification></app-notification>
-  <button mat-icon-button class="cart-button" [matBadge]="filtre.length" (click)="nvaigateToPanier()">
-    <mat-icon  matBadgePosition="below after" matBadgeOverlap="false">
-      shopping_cart
-    </mat-icon>
-  </button>
+  
+  <div *ngIf="tokenClient" class="d-flex ms-auto align-items-center">
+    <app-notification></app-notification>
+    <button mat-icon-button class="cart-button" [matBadge]="filtre.length" (click)="nvaigateToPanier()">
+      <mat-icon  matBadgePosition="below after" matBadgeOverlap="false">
+        shopping_cart
+      </mat-icon>
+    </button>
+  </div>
+  
   
   
   
