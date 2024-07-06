@@ -48,7 +48,7 @@ export class ProduitDetailsComponent {
   addToCart(): void {
     this.cs
       .addProduct({
-        idUser: this.idUser,
+        idUser: this.idClient,
         idProduit: this.id,
         quantity: this.quantite,
       })
