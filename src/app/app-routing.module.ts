@@ -14,11 +14,17 @@ import { ListReclamationComponent } from './list-reclamation/list-reclamation.co
 import { FormReclamationComponent } from './form-reclamation/form-reclamation.component';
 import { ClientFormComponent } from './client-form/client-form.component';
 
-import { LoginFormComponent } from './login-form/login-form.component';
-import { SignupComponent } from './signup/signup.component';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
-const routes: Routes = [
+import { LoginFormComponent } from './UserAPI/login-form/login-form.component';
+import { SignupComponent } from './UserAPI/signup/signup.component';
+import { VerifyEmailComponent } from './UserAPI/verify-email/verify-email.component';
+import { ForgetPasswordComponent } from './UserAPI/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './UserAPI/reset-password/reset-password.component';
+import { ProfilComponent } from './UserAPI/profil/profil.component';
+import { AccountComponent } from './account/account.component';
+
+const routes: Routes = [  
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
   {
     path: 'home',
     children: [
@@ -32,8 +38,11 @@ const routes: Routes = [
   },
 // ********************
   { path: 'login-form',  component: LoginFormComponent },
+  { path: 'forget-password',  component: ForgetPasswordComponent },
+  { path: 'reset-password/:id',  component: ResetPasswordComponent },
   { path: 'signup',  component: SignupComponent },
   { path: 'verify-email',  component: VerifyEmailComponent },
+
 
   { path: 'add-categorie', component: AddCategorieComponent },
   { path: 'panier', component: PanierComponent },
@@ -59,6 +68,8 @@ const routes: Routes = [
       { path: ':idCategorie/:idProduit', component: AddProductComponent },
     ],
   },
+  {path: 'accountShow',  component: AccountComponent},
+
   { path: '**', component: NotfoundComponent },
 ];
 

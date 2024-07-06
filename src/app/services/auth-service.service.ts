@@ -16,11 +16,6 @@ export class AuthServiceService {
 
   constructor(private router: Router, private http:HttpClient){}
 
-  
-
-
-
-
   logIn(email: string, motPasse: string): Observable<any> {
     return this.http.post<any>('http://localhost:9090/user/signin', { email, motPasse })
      
@@ -49,4 +44,43 @@ export class AuthServiceService {
         })
       );
   }
+
+  forgetPassword(email: string): Observable<any> {
+    return this.http.post<any>('http://localhost:9090/user/forgetPasswordClient', { email })
+      .pipe(
+        map(response => {
+          return { isOk: true, message: 'Recovery email sent' };
+        }),
+        catchError(error => {
+          return of({ isOk: false, message: 'Failed to reset password' });
+        })
+      );
+  }
+  changePassword(token: string, newPassword: string): Observable<any> {
+    return this.http.post<any>('http://localhost:9090/user/resetpassword', { token, newPassword })
+      .pipe(
+        map(response => {
+          return { isOk: true, message: 'Password has been reset' };
+        }),
+        catchError(error => {
+          console.log("error", error);
+          return of({ isOk: false, message: 'Error resetting password' });
+        })
+      );
+  }
+
+  getUserProfile(id: string): Observable<any> 
+    { 
+      return this.http.get<any>('http://localhost:9090/user/' + id).pipe(map(response => response),catchError(error => 
+        {console.error('Error fetching profile:', error);
+          throw error;
+        })    );  }
+
+
+updateUserProfile(id: string, data: Partial<User>): Observable<any> {
+          return this.http.put<void>(`http://localhost:9090/user/${id}`, data)
+          .pipe(map(response => response),
+          catchError(error => { console.error('Error updating profile:', error); throw error; }) );
+         } 
 }
+

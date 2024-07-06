@@ -1,0 +1,25 @@
+/* profil.component.css */
+.profile-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .text-danger {
+    color: red;
+  }
+  
+  .success-snackbar {
+    background-color: green;
+  }
+  
+  .error-snackbar {
+    background-color: red;
+  }
+  
