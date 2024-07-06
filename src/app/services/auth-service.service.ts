@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { HttpClient } from  '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { User } from '../models/user';
 import { map, catchError } from 'rxjs/operators';
 import { jwtDecode } from 'jwt-decode';
@@ -14,13 +14,43 @@ import { jwtDecode } from 'jwt-decode';
 
 export class AuthServiceService {
 
+  private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.hasToken());
+  public isAuthenticated$: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
 
   constructor(private router: Router, private http:HttpClient){}
 
+  private hasToken(): boolean {
+    return !!localStorage.getItem('token');
+  }
   logIn(email: string, motPasse: string): Observable<any> {
     return this.http.post<any>('http://localhost:9090/user/signin', { email, motPasse })
-     
+      .pipe(
+        map(response => {
+          localStorage.setItem('tokenClient', response.token);
+          this.isAuthenticatedSubject.next(true);
+          this.router.navigate(['/home']);
+          return { success: true, message: 'WELCOM TO MLIHA' };;
+        }),
+        catchError(error => {
+          let message = 'Unknown error occurred';
+          if (error.status === 404) {
+            message = 'User not found';
+          } else if (error.status === 400) {
+            message = 'Invalid email or password, vérifier si vos coordonnées sont exactes';
+          } else if (error.error.message === 'Invalid mot de passe') {
+            message = 'Invalid password';
+          }
+          return of({ success: false, message });
+        })
+      );
   }
+
+
+  /*logIn(email: string, motPasse: string): Observable<any> {
+    return this.http.post<any>('http://localhost:9090/user/signin', { email, motPasse })
+     
+  }*/
+
   signUp(user: User): Observable<any> {
     return this.http.post<any>(`http://localhost:9090/user/signup`, user)
     .pipe(

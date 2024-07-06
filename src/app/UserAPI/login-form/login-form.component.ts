@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -10,7 +11,33 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./login-form.component.css']
 })
 
-export class LoginFormComponent{
+
+export class LoginFormComponent {
+  loginForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private authService: AuthServiceService, private snackBar: MatSnackBar) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      motPasse: ['', [Validators.required]]
+    });
+  }
+
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      const { email, motPasse } = this.loginForm.value;
+      this.authService.logIn(email, motPasse).subscribe(response => {
+        if (!response.success) {
+          this.snackBar.open(response.message, '****', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        }
+      });
+    }
+  }
+}
+/*export class LoginFormComponent{
 
   loginForm: FormGroup;
   constructor(private fb: FormBuilder,private router:Router, 
@@ -50,7 +77,7 @@ export class LoginFormComponent{
   //   this.chatService.joinRoom({user: username, room: roomId});
   // }
 
-}
+}*/
 
 export class LoginFormModule { }
 
