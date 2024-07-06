@@ -36,7 +36,7 @@ const routes: Routes = [
       },
     ],
   },
-
+// ********************
   { path: 'login-form',  component: LoginFormComponent },
   { path: 'forget-password',  component: ForgetPasswordComponent },
   { path: 'reset-password/:id',  component: ResetPasswordComponent },

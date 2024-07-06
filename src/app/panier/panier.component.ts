@@ -5,6 +5,8 @@ import { CartService } from '../core/services/cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProduitService } from '../core/services/produit.service';
 import { Produit } from '../model/produit.model';
+import { AuthServiceService } from '../services/auth-service.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-panier',
@@ -12,7 +14,7 @@ import { Produit } from '../model/produit.model';
   styleUrls: ['./panier.component.css'],
 })
 export class PanierComponent implements OnInit {
-  idUser = 2;
+  idClient!: number;
   products: Produit[] = [];
   cart!: Carte;
   idProducts: number[] = [];
@@ -23,9 +25,16 @@ export class PanierComponent implements OnInit {
     private cartService: CartService,
     private route: ActivatedRoute,
     private pc: ProduitService,
-    private router: Router
+    private router: Router,
+    private auth: AuthServiceService
   ) {}
   ngOnInit(): void {
+    const token = localStorage.getItem('tokenClient');
+
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      this.idClient = decoded.id;
+    }
     this.loadCart();
     this.calculateTotal();
   }

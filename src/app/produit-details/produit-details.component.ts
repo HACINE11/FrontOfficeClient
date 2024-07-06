@@ -4,6 +4,7 @@ import { ProduitService } from '../core/services/produit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../core/services/cart.service';
 import { CategorieProduit } from '../model/categorie.model';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-produit-details',
@@ -13,7 +14,7 @@ import { CategorieProduit } from '../model/categorie.model';
 export class ProduitDetailsComponent {
   produit!: Produit;
   quantite!: number;
-  idUser = 2;
+  idClient!: number;
   id!: number;
   arrayIdProduit: number[] = [];
   arrayidUser: number[] = [];
@@ -24,6 +25,12 @@ export class ProduitDetailsComponent {
     private cs: CartService,
     private router: Router
   ) {
+    const token = localStorage.getItem('tokenClient');
+
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      this.idClient = decoded.id;
+    }
     let url = this.ac.snapshot.params['idProduit'];
     console.log(this.arrayIdProduit);
     if (url) {
