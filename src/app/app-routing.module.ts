@@ -30,7 +30,7 @@ const routes: Routes = [
       },
     ],
   },
-
+// ********************
   { path: 'login-form',  component: LoginFormComponent },
   { path: 'signup',  component: SignupComponent },
   { path: 'verify-email',  component: VerifyEmailComponent },
