@@ -12,7 +12,7 @@ import { Produit } from '../model/produit.model';
   styleUrls: ['./panier.component.css'],
 })
 export class PanierComponent implements OnInit {
-  idClient = 2;
+  idUser = 2;
   products: Produit[] = [];
   cart!: Carte;
   idProducts: number[] = [];
@@ -31,7 +31,7 @@ export class PanierComponent implements OnInit {
   }
   updatePanier(idProduit: number) {
     this.cartService
-      .updatePanier({ idClient: this.idClient, idProduit: idProduit })
+      .updatePanier({ idUser: this.idUser, idProduit: idProduit })
       .subscribe({
         next: (data) => {
           this.products = this.products.filter((p) => p._id != idProduit);
@@ -51,7 +51,7 @@ export class PanierComponent implements OnInit {
   }
 
   loadCart() {
-    this.cartService.getpanier(this.idClient).subscribe({
+    this.cartService.getpanier(this.idUser).subscribe({
       next: (data: Carte) => {
         this.cart = data;
         this.idProducts = data.items.map((item) => item.product._id);
@@ -85,7 +85,7 @@ export class PanierComponent implements OnInit {
     });
   }
   deletePanier() {
-    this.cartService.deletePanier(this.idClient).subscribe({
+    this.cartService.deletePanier(this.idUser).subscribe({
       next: (data: any) => {
         console.log(data);
         this.router.navigate(['home']);

@@ -13,7 +13,7 @@ export class CartService {
   cartUpdated$ = this.cartUpdateSubject.asObservable();
 
   constructor(private http: HttpClient) {}
-  addProduct(body: { idClient: number; idProduit: number; quantity: number }) {
+  addProduct(body: { idUser: number; idProduit: number; quantity: number }) {
     return this.http.post(this.urlApi + 'add-to-cart', body).pipe(
       tap(() => {
         // Émettre un événement de mise à jour du panier après l'ajout réussi
@@ -21,10 +21,10 @@ export class CartService {
       })
     );
   }
-  getpanier(idClient: number) {
-    return this.http.get<Carte>(this.urlApi + 'get-cart/' + idClient);
+  getpanier(idUser: number) {
+    return this.http.get<Carte>(this.urlApi + 'get-cart/' + idUser);
   }
-  updatePanier(body: { idClient: number; idProduit: number }) {
+  updatePanier(body: { idUser: number; idProduit: number }) {
     return this.http.put(this.urlApi + 'update-cart', body).pipe(
       tap(() => {
         // Émettre un événement de mise à jour du panier après l'ajout réussi
@@ -32,8 +32,8 @@ export class CartService {
       })
     );
   }
-  getTransaction(idClient: number) {
-    return this.http.get<Carte>(this.urlApi + 'get-orders/' + idClient);
+  getTransaction(idUser: number) {
+    return this.http.get<Carte>(this.urlApi + 'get-orders/' + idUser);
   }
   confirmPurchase(body: { carte: Carte }) {
     return this.http.put(this.urlApi + 'confirm-purchase', body).pipe(
@@ -43,8 +43,8 @@ export class CartService {
       })
     );
   }
-  deletePanier(idClient: number) {
-    return this.http.delete(this.urlApi + 'delete-cart/' + idClient).pipe(
+  deletePanier(idUser: number) {
+    return this.http.delete(this.urlApi + 'delete-cart/' + idUser).pipe(
       tap(() => {
         // Émettre un événement de mise à jour du panier après l'ajout réussi
         this.cartUpdateSubject.next();

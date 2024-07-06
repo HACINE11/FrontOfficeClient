@@ -1,6 +1,6 @@
 export interface Reclamation {
     _id: string;  // MongoDB ObjectID as string
-    idClient: string;  // MongoDB ObjectID as string
+    idUser: string;  // MongoDB ObjectID as string
     idCategorieReclamation: string;  // MongoDB ObjectID as string
     title: string;
     description: string;

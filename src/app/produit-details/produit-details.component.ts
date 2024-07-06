@@ -13,10 +13,10 @@ import { CategorieProduit } from '../model/categorie.model';
 export class ProduitDetailsComponent {
   produit!: Produit;
   quantite!: number;
-  idClient = 2;
+  idUser = 2;
   id!: number;
   arrayIdProduit: number[] = [];
-  arrayIdClient: number[] = [];
+  arrayidUser: number[] = [];
   arrayQuantite: number[] = [];
   constructor(
     private ps: ProduitService,
@@ -41,7 +41,7 @@ export class ProduitDetailsComponent {
   addToCart(): void {
     this.cs
       .addProduct({
-        idClient: this.idClient,
+        idUser: this.idUser,
         idProduit: this.id,
         quantity: this.quantite,
       })

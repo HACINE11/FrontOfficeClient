@@ -4,6 +4,8 @@ import { ReclamationService } from '../services/reclamation.service';
 import { Reclamation } from '../models/reclamation';
 import { Router } from '@angular/router';
 
+import { jwtDecode } from 'jwt-decode';
+
 @Component({
   selector: 'app-list-reclamation',
   templateUrl: './list-reclamation.component.html',
@@ -13,10 +15,21 @@ export class ListReclamationComponent implements OnInit{
 
   listReclamations: Reclamation[] = [];
 
-  idClient: string = "6664c89c481c7a4da8a41750";
+  idUser: string = "";
 
   ngOnInit(): void {
-      this.reclamationService.getReclamationById(this.idClient).subscribe(
+    const token = localStorage.getItem('tokenClient');
+
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token);
+        this.idUser = decoded.id;
+      }catch (error) {
+        console.error('Error decoding token:', error);
+      }
+      
+      console.log("id useer :: ", this.idUser);
+      this.reclamationService.getReclamationById(this.idUser).subscribe(
         (data: Reclamation[]) => {
           this.listReclamations = data;
         },
@@ -24,6 +37,9 @@ export class ListReclamationComponent implements OnInit{
           console.error('Error fetching reclamations', error);
         }
     );
+    }
+
+
   }
 
 constructor(  

@@ -11,7 +11,7 @@ import { ProduitService } from '../core/services/produit.service';
 })
 export class TransactionComponent implements OnInit {
   products: Produit[] = [];
-  idClient = 2;
+  idUser = 2;
   idProducts!: number[];
   cart!: Carte;
   constructor(private cartService: CartService, private pc: ProduitService) {}
@@ -19,7 +19,7 @@ export class TransactionComponent implements OnInit {
     this.loadCart();
   }
   loadCart() {
-    this.cartService.getTransaction(this.idClient).subscribe({
+    this.cartService.getTransaction(this.idUser).subscribe({
       next: (data: Carte) => {
         this.cart = data;
         this.idProducts = data.items.map((item) => item.product._id);

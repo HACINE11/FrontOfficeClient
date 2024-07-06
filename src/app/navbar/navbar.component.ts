@@ -13,7 +13,7 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class NavbarComponent {
   cart!: Carte; // Assurez-vous que le type Carte correspond à votre modèle
-  idClient: number = 2; // Remplacez par l'identifiant réel du client
+  idUser: number = 2; // Remplacez par l'identifiant réel du client
   products: Produit[] = []; //
   filtre: any[] = [];
 
@@ -42,7 +42,7 @@ export class NavbarComponent {
     this.router.navigate(['/panier']);
   }
   countPanier() {
-    this.cs.getpanier(this.idClient).subscribe({
+    this.cs.getpanier(this.idUser).subscribe({
       next: (data: Carte) => {
         this.cart = data;
         this.filtre = data.items;

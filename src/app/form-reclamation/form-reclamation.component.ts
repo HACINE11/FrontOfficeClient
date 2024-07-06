@@ -6,6 +6,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Reclamation } from '../models/reclamation';
 import { CategorieReclamation } from '../models/categorie-reclamation';
 
+import { jwtDecode } from 'jwt-decode';
+
+
 @Component({
   selector: 'app-form-reclamation',
   templateUrl: './form-reclamation.component.html',
@@ -16,7 +19,9 @@ export class FormReclamationComponent implements OnInit {
   reclamationForm: FormGroup = new FormGroup({});
   imageFile: File | null = null;
   selectedDescription: string | null = null;
-  idClient: string = "6664c89c481c7a4da8a41750";
+
+  idUser: string = "";
+
   notesReclamation!: string;
   messageNotification!: string;
   green!: string;
@@ -36,6 +41,20 @@ export class FormReclamationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+
+    const token = localStorage.getItem('tokenClient');
+
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token);
+        this.idUser = decoded.id;
+      }catch (error) {
+        console.error('Error decoding token:', error);
+      }
+      console.log("id useer", this.idUser);
+    }
+
     this.reclamationForm = this.formBuilder.group({
       title: [
         { value: '', disabled: this.disableForm },
@@ -152,7 +171,7 @@ export class FormReclamationComponent implements OnInit {
         formData.append('image', this.imageFile);
       }
       formData.append('idCategorieReclamation', this.reclamationForm.get('category')?.value);
-      formData.append('idClient', this.idClient);
+      formData.append('idUser', this.idUser);
 
       let id = this.activatedRoute.snapshot.paramMap.get('id');
 

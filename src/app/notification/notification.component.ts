@@ -5,6 +5,9 @@ import { Reclamation } from '../models/reclamation';
 
 import { Router } from '@angular/router';
 
+import { jwtDecode } from 'jwt-decode';
+
+
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
@@ -19,7 +22,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
 
   listReclamations: Reclamation[] = [];
 
-  idClient: string = "6664c89c481c7a4da8a41750";
+  idUser: string = "";
 
   notifications: number = 0;
 
@@ -34,6 +37,20 @@ export class NotificationComponent implements OnInit, OnDestroy {
   showNotifications: boolean = false; 
 
   ngOnInit(): void {
+    const token = localStorage.getItem('tokenClient');
+
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token);
+        this.idUser = decoded.id;
+
+        
+      }catch (error) {
+        console.error('Error decoding token:', error);
+      }
+      console.log("id useer", this.idUser);
+    }
+
     this.loadNotifications();
 
     // Set interval to reload notifications every 15 seconds
@@ -49,7 +66,8 @@ export class NotificationComponent implements OnInit, OnDestroy {
   }
 
   loadNotifications(): void {
-    this.reclamationService.getReclamationById(this.idClient).subscribe(
+    this.reclamationService.getReclamationById(this.idUser).subscribe(
+      
       (data: Reclamation[]) => {
         this.listReclamations = data.filter(reclamation => reclamation.notification !== "0");
         this.notifications = this.listReclamations.length;
