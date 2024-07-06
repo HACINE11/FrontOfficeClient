@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { HttpClient } from  '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from '../models/user';
 import { map, catchError } from 'rxjs/operators';
+import { jwtDecode } from 'jwt-decode';
 
 
 
@@ -82,5 +83,41 @@ updateUserProfile(id: string, data: Partial<User>): Observable<any> {
           .pipe(map(response => response),
           catchError(error => { console.error('Error updating profile:', error); throw error; }) );
          } 
+
+logOut(): void {
+          localStorage.removeItem('tokenClient');
+          this.router.navigate(['/login-form']);
+        }
+
+isLoggedIn(): boolean {
+          const token = localStorage.getItem('tokenClient');
+          if (token) {
+            try {
+              const decoded: any = jwtDecode(token);
+              return !!decoded; // Vérifie si le token est valide
+            } catch (error) {
+              console.error('Error decoding token:', error);
+              return false;
+            }
+          }
+          return false;
+        }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanActivate {
+
+  constructor(private authService: AuthServiceService, private router: Router) {}
+
+  canActivate(): boolean {
+    if (this.authService.isLoggedIn()) {
+      return true;
+    } else {
+      this.router.navigate(['/login-form']);
+      return false;
+    }
+  }
 }
 

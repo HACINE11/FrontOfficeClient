@@ -17,7 +17,7 @@ export class NavbarComponent {
   products: Produit[] = []; //
   filtre: any[] = [];
 
-  nameClient: string = 'Default name';
+  nameClient: string = 'USER';
 
   tokenClient!: string | null;
 
@@ -68,6 +68,6 @@ export class NavbarComponent {
   logout(): void {
     localStorage.removeItem('tokenClient');
     this.router.navigate(['/home']);
-    // window.location.reload();
+     window.location.reload();
   }
 }

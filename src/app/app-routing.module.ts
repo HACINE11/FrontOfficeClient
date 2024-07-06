@@ -13,7 +13,7 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { ListReclamationComponent } from './list-reclamation/list-reclamation.component';
 import { FormReclamationComponent } from './form-reclamation/form-reclamation.component';
 import { ClientFormComponent } from './client-form/client-form.component';
-
+import { AuthGuard } from './services/auth-service.service';
 import { LoginFormComponent } from './UserAPI/login-form/login-form.component';
 import { SignupComponent } from './UserAPI/signup/signup.component';
 import { VerifyEmailComponent } from './UserAPI/verify-email/verify-email.component';
@@ -44,19 +44,14 @@ const routes: Routes = [
   { path: 'verify-email',  component: VerifyEmailComponent },
 
 
-  { path: 'add-categorie', component: AddCategorieComponent },
-  { path: 'panier', component: PanierComponent },
-  { path: 'transaction', component: TransactionComponent },
+  { path: 'add-categorie', component: AddCategorieComponent , canActivate: [AuthGuard]},
+  { path: 'panier', component: PanierComponent, canActivate: [AuthGuard] },
+  { path: 'transaction', component: TransactionComponent, canActivate: [AuthGuard] },
   
-  {path:'listRec',
-    component: ListReclamationComponent,
-    },
-   {path:'newRec',
-    component: FormReclamationComponent,
+  {path:'listRec',  component: ListReclamationComponent,canActivate: [AuthGuard]    },
+   {path:'newRec',  component: FormReclamationComponent, canActivate: [AuthGuard]
    },
-   {path:'edit/:id',
-    component: FormReclamationComponent,
-    },
+   {path:'edit/:id', component: FormReclamationComponent,canActivate: [AuthGuard]   },
   { path: 'Devenir client', component: ClientFormComponent },
 
   {
@@ -68,7 +63,7 @@ const routes: Routes = [
       { path: ':idCategorie/:idProduit', component: AddProductComponent },
     ],
   },
-  {path: 'accountShow',  component: AccountComponent},
+  {path: 'accountShow',  component: AccountComponent, canActivate: [AuthGuard]},
 
   { path: '**', component: NotfoundComponent },
 ];

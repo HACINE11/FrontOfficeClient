@@ -24,13 +24,13 @@
 
         
 
-        <li class="nav-item" *ngIf="tokenClient">
+        <li class="nav-item">
           <a  class="nav-link" routerLink="/transaction">Transaction</a>
         </li>
-        <li class="nav-item" *ngIf="tokenClient">
+        <li class="nav-item">
           <a class="nav-link" routerLink="/listRec">list reclamation</a>
         </li>
-        <li class="nav-item" *ngIf="tokenClient">
+        <li class="nav-item" >
           <a class="nav-link" routerLink="/newRec">add reclamation</a>
 
         </li>
@@ -52,19 +52,24 @@
   
   
   
-  
-
    <button mat-icon-button [matMenuTriggerFor]="profileMenu">
     <img src="assets/images/3135715.png" class="profile-button">
   </button>
   <div>{{ nameClient }}</div>
+
+  <mat-menu #profileMenu="matMenu" class="bg-light border rounded custom-menu">
+    <button mat-menu-item class="dropdown-item custom-menu-item" (click)="login()">LOGIN</button>
+    <button mat-menu-item class="dropdown-item custom-menu-item" (click)="profil()">PROFIL</button>
+    <button mat-menu-item class="dropdown-item custom-menu-item" (click)="signup()">Creer un compte</button>
+    <button mat-menu-item class="dropdown-item custom-menu-item" (click)="logout()">Deconnexion</button>
+  </mat-menu>
   
-  <mat-menu #profileMenu="matMenu">
+  <!--<mat-menu #profileMenu="matMenu">
     <button mat-menu-item (click)="login()">LOGIN</button>
     <button mat-menu-item (click)="profil()">PROFIL</button>
-    <button mat-menu-item (click)="signup()">Sign Up</button>
-    <button mat-menu-item (click)="logout()">LOGOUT</button>
-  </mat-menu>
+    <button mat-menu-item (click)="signup()">Creer un compte</button>
+    <button mat-menu-item (click)="logout()">Deconnexion</button>
+  </mat-menu>-->
   
 </div> 
 

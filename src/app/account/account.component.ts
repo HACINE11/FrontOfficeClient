@@ -28,6 +28,7 @@ export class AccountComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
+  
     const token = localStorage.getItem('tokenClient');
 
     if (token) {
