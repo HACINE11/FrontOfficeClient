@@ -31,7 +31,7 @@
           <a class="nav-link" routerLink="/listRec">list reclamation</a>
         </li>
         <li class="nav-item" >
-          <a class="nav-link" routerLink="/newRec">add reclamation</a>
+          <a class="nav-link" routerLink="/newRec">Ajouter Réclamation</a>
 
         </li>
         <li>
@@ -41,7 +41,7 @@
       
 <div class="d-flex ms-auto align-items-center">
   
-  <div *ngIf="tokenClient" class="d-flex ms-auto align-items-center">
+  <div class="d-flex ms-auto align-items-center">
     <app-notification></app-notification>
     <button mat-icon-button class="cart-button" [matBadge]="filtre.length" (click)="nvaigateToPanier()">
       <mat-icon  matBadgePosition="below after" matBadgeOverlap="false">
@@ -60,8 +60,8 @@
   <mat-menu #profileMenu="matMenu" class="bg-light border rounded custom-menu">
     <button mat-menu-item class="dropdown-item custom-menu-item" (click)="login()">LOGIN</button>
     <button mat-menu-item class="dropdown-item custom-menu-item" (click)="profil()">PROFIL</button>
-    <button mat-menu-item class="dropdown-item custom-menu-item" (click)="signup()">Creer un compte</button>
-    <button mat-menu-item class="dropdown-item custom-menu-item" (click)="logout()">Deconnexion</button>
+    <button mat-menu-item class="dropdown-item custom-menu-item" (click)="signup()">Créer un compte</button>
+    <button mat-menu-item class="dropdown-item custom-menu-item" (click)="logout()">Déconnexion</button>
   </mat-menu>
   
   <!--<mat-menu #profileMenu="matMenu">

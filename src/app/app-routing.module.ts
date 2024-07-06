@@ -61,7 +61,7 @@ const routes: Routes = [
       { path: 'update/:idCategorie', component: AddCategorieComponent },
       { path: ':id', component: ListProductsComponent },
       { path: ':idCategorie/:idProduit', component: AddProductComponent },
-    ],
+    ],canActivate: [AuthGuard]
   },
   {path: 'accountShow',  component: AccountComponent, canActivate: [AuthGuard]},
 
